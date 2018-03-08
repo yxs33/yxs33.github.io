@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | yxs33</title>
+  <title>yxs33</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="武又大学EE&amp;CS:0年级">
-<meta property="og:type" content="website">
+  <meta name="description" content="Deep Learning-Based MIMO Communications##　Abstract  针对单用户多输入多输出（MIMO）通信，我们基于无监督深度学习，采用自动编码器，提出了一种新的物理层方案。该方法将对物理层表示的联合优化和编码和解码过程扩展为单个端到端任务，将发射机和接收机扩展到多天线的情况下。我们引入了一个广泛使用的领域适当的无线信道损伤模型（瑞利衰落信道），在自动编码器优化">
+<meta property="og:type" content="article">
 <meta property="og:title" content="yxs33">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/03/07/Deep Learning-Based MIMO Communications/index.html">
 <meta property="og:site_name" content="yxs33">
-<meta property="og:description" content="武又大学EE&amp;CS:0年级">
+<meta property="og:description" content="Deep Learning-Based MIMO Communications##　Abstract  针对单用户多输入多输出（MIMO）通信，我们基于无监督深度学习，采用自动编码器，提出了一种新的物理层方案。该方法将对物理层表示的联合优化和编码和解码过程扩展为单个端到端任务，将发射机和接收机扩展到多天线的情况下。我们引入了一个广泛使用的领域适当的无线信道损伤模型（瑞利衰落信道），在自动编码器优化">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-07T13:00:19.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yxs33">
-<meta name="twitter:description" content="武又大学EE&amp;CS:0年级">
+<meta name="twitter:description" content="Deep Learning-Based MIMO Communications##　Abstract  针对单用户多输入多输出（MIMO）通信，我们基于无监督深度学习，采用自动编码器，提出了一种新的物理层方案。该方法将对物理层表示的联合优化和编码和解码过程扩展为单个端到端任务，将发射机和接收机扩展到多天线的情况下。我们引入了一个广泛使用的领域适当的无线信道损伤模型（瑞利衰落信道），在自动编码器优化">
   
     <link rel="alternative" href="/atom.xml" title="yxs33" type="application/atom+xml">
   
@@ -157,199 +158,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Deep Learning-Based MIMO Communications" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Deep-Learning-Based-MIMO-Communications"><a href="#Deep-Learning-Based-MIMO-Communications" class="headerlink" title="Deep Learning-Based MIMO Communications"></a>Deep Learning-Based MIMO Communications</h1><p>##　Abstract </p>
+<p>针对单用户多输入多输出（MIMO）通信，我们基于无监督深度学习，采用自动编码器，提出了一种新的物理层方案。该方法将对物理层表示的联合优化和编码和解码过程扩展为单个端到端任务，将发射机和接收机扩展到多天线的情况下。我们引入了一个广泛使用的领域适当的无线信道损伤模型（瑞利衰落信道），在自动编码器优化问题中，为了直接学习一个优化它的系统。我们在实现中考虑了空间多样性和空间多路复用技术。我们的基于深度学习的方法显示了该学习方案的巨大潜力，这种方法在现有的无线MIMO系统中广泛使用的方法的性能和超过了它的性能。我们讨论了在空间多样性和多路复用模式下，该提议的方案如何能够很容易地应用于开放循环和闭环操作，并且只使用紧凑的二进制信道状态信息（CSI）作为反馈。</p>
+<h2 id="I-INTRODUCTION"><a href="#I-INTRODUCTION" class="headerlink" title="I. INTRODUCTION"></a>I. INTRODUCTION</h2><p>我们的主要贡献如下：</p>
+<p>我们引入了一种方案，它可以将许多MIMO任务组合成一个单一的端到端评估、反馈、编码和解码过程，这些过程可以联合优化，从而最大限度地提高吞吐量，并最小化特定通道条件的误码率。我们相信，这种联合系统优化过程有可能带来显著的收益，与当前的系统相比，后者通常以更模块化的方式进行优化。此外，开发模型的性能可以不断提高通过较长时间的训练，因为生成输入数据（例如,符号)是非常简单的。</p>
+<p>我们证明了利用深度学习（DL）技术和自动编码器实现和超越传统的空间分集MIMO系统的性能是可能的。首先，我们模拟了在3中提出的2x1系统的空时块码（STBC）方案的性能。接下来，我们开发了一个端到端的学习MIMO通信系统的深度神经网络（NN），它被训练去学习通过瑞利衰落通道的传输符号。我们将比特错误率（BER）与自动编码器系统进行比较。结果表明，当信噪比（SNR）值超过15分贝时，自动编码器系统的性能超过了STBC编码的性能。</p>
+<p>我们证明，利用DL和自动编码器实现和超越传统线性预编码的传统线性编码空间多路复用系统的性能是可能的。我们模拟了一个闭环MIMO系统的性能，该系统在发射器中有完美的CSI。我们在发射器使用基于奇异值分解（SVD）的预编码来发送符号。接收方对接收到的信号进行解码，并估计传输的符号。接下来，我们开发了一种训练过程中在发射端使用CSI的深度NN模型。自动编码器与传输符号一起学习CSI，并利用这些信息消除对接收机的干扰，并高精度地估计传输信号。结果表明，自动编码器系统的性能超过了基于SVD的MIMO空间多路复用系统的性能。</p>
+<p>我们修改了我们的NN实现，以考虑在现实世界中使用CSI的带宽约束反馈通道的实际挑战。我们考虑的案例是，在发射机中有一个小型的v-bit代表，而不是完美的现场评估。换句话说，我们为每个通道条目引入了量化错误，并学习了2v次方的离散通道状态，其中信息可以被编码。结果表明，CSI的量化实际上提高了我们系统对某些v值的性能，在整个SNRs系统中提供了更低的误差率。</p>
+<p>##　VI. CONCLUSION </p>
+<p>本文中描述的架构和初始结果为使用自动编码器的MIMO无线通信方案提供了一种令人激动的新方法。这与当前的系统有很大的不同，目前仍有许多问题需要理解，并使其能够有效地利用现实世界的物理约束。然而,初步结果表明，性能可以与现有的方案具有高度的竞争优势，并且可以使用宽并发实现来降低计算复杂度。我们希望我们的研究结果有助于说明自动编码方法在学习中对复杂通道系统和数据的优化和编码/解码过程的能力。我们希望随着结果和发现在这一领域的不断成熟，这种单纯的、近似的信号处理方法将继续在整个无线通信和信号处理领域获得越来越多的接受和理解。这种方法使得在当前广泛的深入学习和应用分析方法的能力下，很难提供严格的分析性能界限和保证。虽然这些分析属性是可取的，然而放弃它们在信号处理社区中并不受欢迎，有时会回忆起乔治盒子的文字是很有帮助的，他优雅地写道：“所有的模型都是错的，但有些是有用的”。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/08/Deep Learning for Wireless Physical Layer -Opportunities and Challenges/" class="archive-article-date">
-  	<time datetime="2018-03-08T05:18:00.697Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-08</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/07/Deep Learning-Based MIMO Communications/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/07/Deep Learning-Based MIMO Communications/" class="archive-article-date">
-  	<time datetime="2018-03-07T12:23:29.332Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/03/08/Deep Learning for Wireless Physical Layer -Opportunities and Challenges/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/06/An Introduction to Deep Learning for the Physical Layer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/06/An Introduction to Deep Learning for the Physical Layer/" class="archive-article-date">
-  	<time datetime="2018-03-06T06:01:28.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/16/Logistic Regression with a Neural Network mindset v4/" class="archive-article-date">
-  	<time datetime="2018-01-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/16/Logistic Regression with a Neural Network mindset v4/">class 1 - week 2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/deeplearnig//" class="article-tag-list-link color2">deeplearnig</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/02/second/" class="archive-article-date">
-  	<time datetime="2018-01-02T07:01:42.301Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-02</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/02/second/">second</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/日常记录//" class="article-tag-list-link color5">日常记录</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/01/first/" class="archive-article-date">
-  	<time datetime="2017-12-31T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/01/first/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/日常记录//" class="article-tag-list-link color5">日常记录</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -372,8 +332,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

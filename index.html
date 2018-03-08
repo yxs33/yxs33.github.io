@@ -159,6 +159,188 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Deep Learning for Wireless Physical Layer -Opportunities and Challenges" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Deep-Learning-for-Wireless-Physical-Layer-Opportunities-and-Challenges"><a href="#Deep-Learning-for-Wireless-Physical-Layer-Opportunities-and-Challenges" class="headerlink" title="Deep Learning for Wireless Physical Layer:Opportunities and Challenges"></a>Deep Learning for Wireless Physical Layer:Opportunities and Challenges</h1><h2 id="VI-CONCLUSION"><a href="#VI-CONCLUSION" class="headerlink" title="VI.  CONCLUSION"></a>VI.  CONCLUSION</h2><p>本文回顾了将DL方法应用于无线通信系统物理层的文献，以取代传统通信系统的部分或创建新的基于dl的体系结构（即：一个auto编码器系统）。基于其良好的表达能力和方便的优化，基于dl算法的算法具有较低的复杂性和延迟性，在传统理论受到挑战的未来通信系统中具有潜在的应用前景。将DL应用到无线通信系统的物理层，这是一个很有前途的研究领域，远远不够成熟。必须进行进一步的研究，包括坚实的理论分析，并且必须提出新的基于dl的体系结构，以实现在实际通信场景中的基于dl的思想。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/08/Deep Learning for Wireless Physical Layer -Opportunities and Challenges/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Deep Learning-Based MIMO Communications" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Deep-Learning-Based-MIMO-Communications"><a href="#Deep-Learning-Based-MIMO-Communications" class="headerlink" title="Deep Learning-Based MIMO Communications"></a>Deep Learning-Based MIMO Communications</h1><p>##　Abstract </p>
+<p>针对单用户多输入多输出（MIMO）通信，我们基于无监督深度学习，采用自动编码器，提出了一种新的物理层方案。该方法将对物理层表示的联合优化和编码和解码过程扩展为单个端到端任务，将发射机和接收机扩展到多天线的情况下。我们引入了一个广泛使用的领域适当的无线信道损伤模型（瑞利衰落信道），在自动编码器优化问题中，为了直接学习一个优化它的系统。我们在实现中考虑了空间多样性和空间多路复用技术。我们的基于深度学习的方法显示了该学习方案的巨大潜力，这种方法在现有的无线MIMO系统中广泛使用的方法的性能和超过了它的性能。我们讨论了在空间多样性和多路复用模式下，该提议的方案如何能够很容易地应用于开放循环和闭环操作，并且只使用紧凑的二进制信道状态信息（CSI）作为反馈。</p>
+<h2 id="I-INTRODUCTION"><a href="#I-INTRODUCTION" class="headerlink" title="I. INTRODUCTION"></a>I. INTRODUCTION</h2><p>我们的主要贡献如下：</p>
+<p>我们引入了一种方案，它可以将许多MIMO任务组合成一个单一的端到端评估、反馈、编码和解码过程，这些过程可以联合优化，从而最大限度地提高吞吐量，并最小化特定通道条件的误码率。我们相信，这种联合系统优化过程有可能带来显著的收益，与当前的系统相比，后者通常以更模块化的方式进行优化。此外，开发模型的性能可以不断提高通过较长时间的训练，因为生成输入数据（例如,符号)是非常简单的。</p>
+<p>我们证明了利用深度学习（DL）技术和自动编码器实现和超越传统的空间分集MIMO系统的性能是可能的。首先，我们模拟了在3中提出的2x1系统的空时块码（STBC）方案的性能。接下来，我们开发了一个端到端的学习MIMO通信系统的深度神经网络（NN），它被训练去学习通过瑞利衰落通道的传输符号。我们将比特错误率（BER）与自动编码器系统进行比较。结果表明，当信噪比（SNR）值超过15分贝时，自动编码器系统的性能超过了STBC编码的性能。</p>
+<p>我们证明，利用DL和自动编码器实现和超越传统线性预编码的传统线性编码空间多路复用系统的性能是可能的。我们模拟了一个闭环MIMO系统的性能，该系统在发射器中有完美的CSI。我们在发射器使用基于奇异值分解（SVD）的预编码来发送符号。接收方对接收到的信号进行解码，并估计传输的符号。接下来，我们开发了一种训练过程中在发射端使用CSI的深度NN模型。自动编码器与传输符号一起学习CSI，并利用这些信息消除对接收机的干扰，并高精度地估计传输信号。结果表明，自动编码器系统的性能超过了基于SVD的MIMO空间多路复用系统的性能。</p>
+<p>我们修改了我们的NN实现，以考虑在现实世界中使用CSI的带宽约束反馈通道的实际挑战。我们考虑的案例是，在发射机中有一个小型的v-bit代表，而不是完美的现场评估。换句话说，我们为每个通道条目引入了量化错误，并学习了2v次方的离散通道状态，其中信息可以被编码。结果表明，CSI的量化实际上提高了我们系统对某些v值的性能，在整个SNRs系统中提供了更低的误差率。</p>
+<p>##　VI. CONCLUSION </p>
+<p>本文中描述的架构和初始结果为使用自动编码器的MIMO无线通信方案提供了一种令人激动的新方法。这与当前的系统有很大的不同，目前仍有许多问题需要理解，并使其能够有效地利用现实世界的物理约束。然而,初步结果表明，性能可以与现有的方案具有高度的竞争优势，并且可以使用宽并发实现来降低计算复杂度。我们希望我们的研究结果有助于说明自动编码方法在学习中对复杂通道系统和数据的优化和编码/解码过程的能力。我们希望随着结果和发现在这一领域的不断成熟，这种单纯的、近似的信号处理方法将继续在整个无线通信和信号处理领域获得越来越多的接受和理解。这种方法使得在当前广泛的深入学习和应用分析方法的能力下，很难提供严格的分析性能界限和保证。虽然这些分析属性是可取的，然而放弃它们在信号处理社区中并不受欢迎，有时会回忆起乔治盒子的文字是很有帮助的，他优雅地写道：“所有的模型都是错的，但有些是有用的”。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/07/Deep Learning-Based MIMO Communications/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-An Introduction to Deep Learning for the Physical Layer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#An Introduction to Deep Learning for the Physical Layer</p>
+<hr>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展到多重网络发射器和接收器并提出了无线电变换网络（RTNs）的概念作为一种结合机器学习（ML）模型中的专业领域知识的方式。最后,我们展示了卷积神经网络关于未处理的IQ采样值的调制分类的应用 ，相比于传统的依赖特征的方法达到了具有竞争性的准确率。这篇论文主要是公然挑战的讨论和未来的研究领域。</p>
+<h2 id="I-INTRODUCTION"><a href="#I-INTRODUCTION" class="headerlink" title="I. INTRODUCTION"></a>I. INTRODUCTION</h2><p>通信是一个需要大量专业知识的领域，例如，如何对不同类型的通道进行建模，对各种硬件缺陷进行补偿，和设计最佳的信号和检测方案以确保数据传输的可靠性。因此，它是一个复杂而成熟的工程领域，有许多不同的研究领域 都见过关于性能提升而收益递减，特别是在物理层上。任何基于机器学习（ML）或深度学习（DL）的方法必须通过高水平的性能，才能提供切实的新利益。</p>
+<p>在计算机视觉和自然语言等领域处理，DL很亮眼是因为很难用严格的数学模型描述真实世界的图像或语言。例如，编写一个强悍的算法来检测手写数字或图像目标几乎是不可能的任务，但在现在实现DL算法以超过人类的水平的准确性去学习来完成这项任务几乎是微不足道的。在通信方面，换句话说，我们可以设计出直接的传输信号用于各种信道的符号检测算法和系统模型（例如，探测加上了白高斯噪声的星座符号（AWGN））。因此，只要这样的模型能充分捕获真实效果，我们没有期望</p>
+<p>DL能在物理层上产生显著的改进。尽管如此，我们相信我们在这篇文章中探讨的DL应用程序是一种有用而深刻的从根本上重新思考通信系统设计问题的方法，并对在很难描述易处理的数学模型的复杂的通信场景中的性能提升保持承诺。我们的主要贡献如下：</p>
+<ul>
+<li>我们演示了对于给定的针对选定的损失函数进行了优化的信道模型，我们可以学习完全的发射机和接收机实现(例如，最小化块错误率（BLER））。有趣的是，这种“习得”的系统与当前最先进技术水平相比是有竞争力的。这里的关键思想是将发射机、通道和接收器作为一个可以训练为自动编码器的深度神经网络（NN）。这种方法的妙处在于，它甚至可以应用于最优解是未知的信道模型和损失函数。</li>
+<li>我们将这个概念扩展到一个敌对的网络中，这种网络由多个传输-接收方对容量进行竞争。这就导致了寻找最佳信号方案的干扰信道是一个需要长期研究的问题。我们证明了这样的设置也可以表示为具有多个输入和输出的NN。以及所有的发送器和接收方实现都可以对一个公共或个人的性能指标进行联合优化。</li>
+<li>我们引入了无线电变换器网络（RTNs）作为一种将专业知识集成到DL模型中的方法。例如，RTNs允许在接收器上执行预定义的校正算法（“变换器”）（例如，一个复杂的数值，与一个向量的卷积），这可能会被另一个NN所学习的参数所接受。这个NN可以集成到在执行转换信号（例如，符号检测）的任务的端到端培训过程中。</li>
+<li>我们研究NNs在复数IQ采样样本上的应用，解决调制分类的问题，并展示了卷积神经网络（CNNs）-大多数DL计算机视觉系统的基石，它可以超越基于专业特征的传统分类技术。这一结果反映了在不同领域的DL的无情趋势，超越并取代长期使用的专业特征，例如，尺度不变特性转换（SIFT）和词汇量。</li>
+</ul>
+<p>本文提出的观点为今后的研究提供了许多有趣的途径，并将详细讨论。我们希望这些能够激发学术界的广泛兴趣。</p>
+<p>本文的其余部分的结构如下：Section I-A 讨论了DL对物理层的潜在好处。Section I-B介绍了相关工作。Section II介绍了深度学习的背景。在Section III中，介绍了几种用于通信的DL应用。Section IV 包含了对开放问题的概述和讨论，以及未来研究的重点领域。Section V 结束这篇文章。</p>
+<h3 id="A-Potential-of-DL-for-the-physical-layer"><a href="#A-Potential-of-DL-for-the-physical-layer" class="headerlink" title="A. Potential of DL for the physical layer"></a>A. Potential of DL for the physical layer</h3><p>除了完整的“学习”通信系统的知识之美之外，还有一些原因可以解释为什么DL可以通过现有的物理层算法获得收益。首先，通信中的大多数信号处理算法在统计和信息理论中都有坚实的基础，而且在数学模型中通常是最优的。这些都是线性的，静止的，符合高斯统计的。然而，一个实用的系统有许多不完善和非线性的问题（例如非线性功率放大器（PAs），有限分辨率量化），这只能被这些模型近似的捕获。出于这个原因，基于DL的通信系统（或处理块）不需要一个数学上的易处理模型，并且可以针对特定的硬件配置和通道进行优化，从而可以更好地优化这种缺陷。</p>
+<p>其次，通信系统设计的指导原则之一是将信号处理分解成具有多个独立块的链;每个独立快执行一个具有良好定义和隔离的功能（例如，信源/信道编码，调制，信道估计，均衡）。尽管这种方法已经导致了我们今天所拥有的高效、通用和可控的系统，但还不清楚个别优化的处理块是否达到了最佳的端到端性能。例如，许多实际信道和短块长度的源和信道编码的分离（参见其中的10和引用）以及单独的编码和调制11被认为是次优的。尝试联合优化这些组件，例如基于因子图12，提供了增益，但是导致了难以处理的复杂系统。另一方面，一个学习好的端到端通信系统不太可能有如此严格的模块化结构，因为它针对端到端的性能进行了优化。</p>
+<p>第三，已经证明NNs是通用函数近似器13，而最近的研究显示了用NNs进行算法学习的非凡能力，这是一种被为“图灵完备15”的NNs 14。由于NNs的执行可以在并行架构上被高度并行化，并且可以用低精度的数据类型16来实现，所以有证据表明，采用这种形式的“学习”算法可以更快地执行，而且比人工“编程”的同类算法更低。</p>
+<p>第四，大规模并行处理体系结构与分布式内存体系结构，例如图形处理单元（gpu），以及日益专业化的NN推理（例如，17）芯片，已经显示出非常高效的能力，并且在并行算法18的充分利用下，具有令人印象深刻的计算吞吐量。</p>
+<p>然而，这种架构的性能在很大程度上受到了算法和高级编程语言的有效利用的限制。在广泛而深入的NNs中，计算和内存访问固有的并发性已经证明了一种令人惊讶的能力-可以在这些架构上轻松地实现高资源利用，而无需应用特定于应用程序的优化或优化。</p>
+<h3 id="B-Historical-context-and-related-work"><a href="#B-Historical-context-and-related-work" class="headerlink" title="B. Historical context and related work"></a>B. Historical context and related work</h3><p>在通信中使用ML的应用程序有很长的历史，涵盖了广泛的应用程序。这些包括信道建模和预测、本地化、均衡、解码、量化、压缩、解调、调制识别和频谱感知，以命名19、20（以及其中的参考）。然而，对于我们所知的最好的ML知识，由于上面提到的原因，很少有这样的应用程序被广泛采用或导致了广泛的商业成功。同样有趣的是，所有这些应用程序都集中在单独的接收器处理任务上，而对发送器或完整的端到端系统的考虑在文献中完全没有。</p>
+<p>开放源码的DL库（见ii-b）和现成的专用硬件，以及在计算机视觉方面的惊人进展，激发了人们对DL的通信和网络21的兴趣。目前，将DL应用到物理层的主要方法有两种。我们的目标是用DL来改进/增强现有算法的部分，或者完全取代它们。</p>
+<p>在进入第一类的论文中，有22、23和24，分别考虑改进信传播信道解码和多输入多输出（MIMO）检测。这些工作的灵感来自于通过把每个迭代都解释为一组NN层将现有的迭代算法以深度学习的方式展开25。以类似的方式，26目标是改进使用DL的稀疏线性逆问题的解决方案。</p>
+<p>在第二种分类中，论文包括27，处理低分辨率量化的MIMO系统的盲检测，以及28，在这种情况下，对不存在数学信道模型的分子通信进行检测。学习解决无线资源分配的复杂优化任务，如电力控制，在29进行了研究。我们中的一些人还演示了在学习到的端到端通信系统的初始结果30也考虑了使用当前最先进的DL工具来进行调制识别31，信号压缩32，信道解码33，34。</p>
+<h2 id="II-DEEP-LEARNING-BASICS"><a href="#II-DEEP-LEARNING-BASICS" class="headerlink" title="II. DEEP LEARNING BASICS"></a>II. DEEP LEARNING BASICS</h2><h3 id="A-Convolutional-layers"><a href="#A-Convolutional-layers" class="headerlink" title="A. Convolutional layers"></a>A. Convolutional layers</h3><h3 id="B-Machine-learning-libraries"><a href="#B-Machine-learning-libraries" class="headerlink" title="B. Machine learning libraries"></a>B. Machine learning libraries</h3><h2 id="III-EXAMPLES-OF-MACHINE-LEARNING-APPLICATIONS-FOR-THE-PHYSICAL-LAYER"><a href="#III-EXAMPLES-OF-MACHINE-LEARNING-APPLICATIONS-FOR-THE-PHYSICAL-LAYER" class="headerlink" title="III. EXAMPLES OF MACHINE LEARNING APPLICATIONS FOR THE PHYSICAL LAYER"></a>III. EXAMPLES OF MACHINE LEARNING APPLICATIONS FOR THE PHYSICAL LAYER</h2><p>在本节中，我们将展示如何将终端通信系统作为自动编码器，并通过SGD对其进行培训。这个想法被扩展到多个发射器和接收器，我们研究的是一个双用户干涉通道。在此之后，我们将引入RTNs的概念来提高衰落信道的性能，并将其应用于原始的射频时间序列数据，以实现调制分类的任务。</p>
+<h3 id="A-Autoencoders-for-end-to-end-communications-systems"><a href="#A-Autoencoders-for-end-to-end-communications-systems" class="headerlink" title="A. Autoencoders for end-to-end communications systems"></a>A. Autoencoders for end-to-end communications systems</h3><p>在最简单的形式中，通信系统由一个发射机、一个通道和一个接收器组成，如图1所示。发送者想要将M个可能的消息中的一个发送给利用了n个离散的通道的接接器。为了如此，应用了转换形式f利用信息s来生成转换信号x=f(s)。一般来说,发射机的硬件条件会对x施加一定的约束，例如，能量约束，幅度约束，平均功率约束。这个通信系统的通信率是R=k/n(位/使用的信道数)。在续集中，符号（n，k）意味着通信系统发送一个M=2k次方数的消息（即：k位）通过n个使用的信道。信道是由条件概率密度函数p（y|x）描述的，其中y 表示接收信号。接收到y，接收方应用转换方式g来生成传输消息s的估计s^。</p>
+<p>从DL的观点来看，这个简单的通信系统可以被看作是一种特殊的自动编码器[35，Ch.14]。通常，自动编码器的目标是在某个中间层找到一个低维度表示的输入，它允许在输出端进行最小误差的重构。通过这种方式，自动编码器学习非线性压缩和重构输入。在我们的例子中,自动编码器的目的是不同的。它试图学习消息s的模型表示x，关于信道映射x到y的损耗(即噪声、衰减、失真等)，以便能够以很小的错误概率来恢复传输的消息。换句话说，当大多数自动编码器为了压缩数据从输入数据中删除冗余的时候，这个自动编码器（“通道自动编码器”）通常会增加冗余，学习一种中间表现形式，以表示对信道的干扰。</p>
+<p>图2显示了这样一个自动编码器的例子。在这里，发送器由一个前馈NN组成，它有多个密集层，然后是一个标准化层，确保在x上满足物理约束。注意发射器的输入s被编码为one-hot向量，一个M维的向量，第s个元素等于1而其他的元素等于0.信道由一个带有固定方差的附加噪声层表示$$B=(2RE/N)^ -1$$。Eb=N0表示每比特（Eb）的能量，即噪声功率谱密度（N0）比。接收器也用前馈NN实现。它的最后一层使用了一个softmax激活函数，输出p 是一个具有所有可能的分类信息的概率向量。解码后的信息估计s^对应的是p元素中概率最高的索引，。自动编码器可以在所有可能的信息s 属于M的集合上使用SGD进行端到端训练，使用在1和p之间的适合分类的的绝对交叉熵损失函数。</p>
+<p>图3比较了一个由训练的自动编码器（7,4）所实现的采用二进制相移键控（BPSK）调制和用二进制的硬编码解码的汉明（7,4）编码，或最大似然解码（MLD）来对抗误块率BLER）的通信系统的误块率（BLER）。两个系统都以R=4/7的速度运行。为了比较，我们还提供了未使用BPSK（44）编码的误块率（BLER）。这个结果表明，自动编码器在没有任何先验知识的情况下，已经学习了与使用MLD（7,4）的汉明码相同的编码和解码函数。自动编码器的布局在表IV中提供。尽管单个层可以表示从信息索引到对应传输向量的相同映射，但我们的实验表明SGD通过两个传输层而不是一个传输层来能够收敛到更好的全局最优点。这种增长的搜索空间维度参数通过使这些结果在优化过程中更有可能成为鞍点，可能实际上更有助于减少收敛到次优点的可能性。训练是在使用学习率0:001的Adam46方法在固定数值的Eb=N0=7 dB（cf. Section IV-B）的环境中完成的。我们注意到，在训练中增加批量的大小有助于提高精确度。对于所有其他实现细节，我们引用源代码44。</p>
+<p>图3b显示了类似的比较，但是对于一个（8,8）和（2,2）的通信系统来说。R = 1。令人惊讶的是，虽然自动编码器实现了在（2,2）下与未编码的BPSK相同的误块率BLER，但它在（8,8）的全部Eb/N0范围内的性能优于后者。这意味着它已经学习了一些联合编码和调制方案，这样就可302以实现编码增益。为了进行一个真正公平的比较，这个结果应该与使用通道代码的高阶调制方案进行比较（或者在八个维度上的最优包装）。用不同的基准对各种通道类型和参数的详细性能比较（n，k），超出了本文的范围，将留给将来的研究。</p>
+<h3 id="B-Autoencoders-for-multiple-transmitters-and-receivers"><a href="#B-Autoencoders-for-multiple-transmitters-and-receivers" class="headerlink" title="B. Autoencoders for multiple transmitters and receivers"></a>B. Autoencoders for multiple transmitters and receivers</h3><h3 id="C-Radio-transformer-networks-for-augmented-signal-processing-algorithms"><a href="#C-Radio-transformer-networks-for-augmented-signal-processing-algorithms" class="headerlink" title="C. Radio transformer networks for augmented signal processing algorithms"></a>C. Radio transformer networks for augmented signal processing algorithms</h3><p>##CONCLUSION</p>
+<p>我们已经讨论了几个关于应用DL到物理层的有前景的新应用。最重要的是，我们已经介绍了一种将通信视为端到端的重构优化任务的新方法：使用自动编码器学习发射机和接收机的实现以及没有任何先验知识的信号编码。这种方法相较于传统的基准线在各种情况下都显示出极其具有竞争性的BLER 性能，虽然长块长度的可伸缩性仍然是一个挑战。除了潜在的在可靠性或延迟方面的性能改进，我们的方法可以提供有趣的见解关于在最优方案未知的场景（例如干扰信道）的最优的通信方案（例如星座映射）。我们相信这是一个把DL和ML应用于通信的广泛研究的开端，并对随着该领域的成熟未来无线通信系统得到增添的可能性感到兴奋。现在，有很多开放的问题需要解决以及实际的收获需要拥有。我们已经确定了未来研究的重点领域，并强调了可以用来比较不同的ML模型和算法的性能的基准问题和数据集的需求。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/06/An Introduction to Deep Learning for the Physical Layer/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Logistic Regression with a Neural Network mindset v4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | yxs33</title>
+  <title>yxs33</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="武又大学EE&amp;CS:0年级">
-<meta property="og:type" content="website">
+  <meta name="description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
+<meta property="og:type" content="article">
 <meta property="og:title" content="yxs33">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/03/06/An Introduction to Deep Learning for the Physical Layer/index.html">
 <meta property="og:site_name" content="yxs33">
-<meta property="og:description" content="武又大学EE&amp;CS:0年级">
+<meta property="og:description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-07T12:11:02.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yxs33">
-<meta name="twitter:description" content="武又大学EE&amp;CS:0年级">
+<meta name="twitter:description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
   
     <link rel="alternative" href="/atom.xml" title="yxs33" type="application/atom+xml">
   
@@ -157,199 +158,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-An Introduction to Deep Learning for the Physical Layer" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#An Introduction to Deep Learning for the Physical Layer</p>
+<hr>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展到多重网络发射器和接收器并提出了无线电变换网络（RTNs）的概念作为一种结合机器学习（ML）模型中的专业领域知识的方式。最后,我们展示了卷积神经网络关于未处理的IQ采样值的调制分类的应用 ，相比于传统的依赖特征的方法达到了具有竞争性的准确率。这篇论文主要是公然挑战的讨论和未来的研究领域。</p>
+<h2 id="I-INTRODUCTION"><a href="#I-INTRODUCTION" class="headerlink" title="I. INTRODUCTION"></a>I. INTRODUCTION</h2><p>通信是一个需要大量专业知识的领域，例如，如何对不同类型的通道进行建模，对各种硬件缺陷进行补偿，和设计最佳的信号和检测方案以确保数据传输的可靠性。因此，它是一个复杂而成熟的工程领域，有许多不同的研究领域 都见过关于性能提升而收益递减，特别是在物理层上。任何基于机器学习（ML）或深度学习（DL）的方法必须通过高水平的性能，才能提供切实的新利益。</p>
+<p>在计算机视觉和自然语言等领域处理，DL很亮眼是因为很难用严格的数学模型描述真实世界的图像或语言。例如，编写一个强悍的算法来检测手写数字或图像目标几乎是不可能的任务，但在现在实现DL算法以超过人类的水平的准确性去学习来完成这项任务几乎是微不足道的。在通信方面，换句话说，我们可以设计出直接的传输信号用于各种信道的符号检测算法和系统模型（例如，探测加上了白高斯噪声的星座符号（AWGN））。因此，只要这样的模型能充分捕获真实效果，我们没有期望</p>
+<p>DL能在物理层上产生显著的改进。尽管如此，我们相信我们在这篇文章中探讨的DL应用程序是一种有用而深刻的从根本上重新思考通信系统设计问题的方法，并对在很难描述易处理的数学模型的复杂的通信场景中的性能提升保持承诺。我们的主要贡献如下：</p>
+<ul>
+<li>我们演示了对于给定的针对选定的损失函数进行了优化的信道模型，我们可以学习完全的发射机和接收机实现(例如，最小化块错误率（BLER））。有趣的是，这种“习得”的系统与当前最先进技术水平相比是有竞争力的。这里的关键思想是将发射机、通道和接收器作为一个可以训练为自动编码器的深度神经网络（NN）。这种方法的妙处在于，它甚至可以应用于最优解是未知的信道模型和损失函数。</li>
+<li>我们将这个概念扩展到一个敌对的网络中，这种网络由多个传输-接收方对容量进行竞争。这就导致了寻找最佳信号方案的干扰信道是一个需要长期研究的问题。我们证明了这样的设置也可以表示为具有多个输入和输出的NN。以及所有的发送器和接收方实现都可以对一个公共或个人的性能指标进行联合优化。</li>
+<li>我们引入了无线电变换器网络（RTNs）作为一种将专业知识集成到DL模型中的方法。例如，RTNs允许在接收器上执行预定义的校正算法（“变换器”）（例如，一个复杂的数值，与一个向量的卷积），这可能会被另一个NN所学习的参数所接受。这个NN可以集成到在执行转换信号（例如，符号检测）的任务的端到端培训过程中。</li>
+<li>我们研究NNs在复数IQ采样样本上的应用，解决调制分类的问题，并展示了卷积神经网络（CNNs）-大多数DL计算机视觉系统的基石，它可以超越基于专业特征的传统分类技术。这一结果反映了在不同领域的DL的无情趋势，超越并取代长期使用的专业特征，例如，尺度不变特性转换（SIFT）和词汇量。</li>
+</ul>
+<p>本文提出的观点为今后的研究提供了许多有趣的途径，并将详细讨论。我们希望这些能够激发学术界的广泛兴趣。</p>
+<p>本文的其余部分的结构如下：Section I-A 讨论了DL对物理层的潜在好处。Section I-B介绍了相关工作。Section II介绍了深度学习的背景。在Section III中，介绍了几种用于通信的DL应用。Section IV 包含了对开放问题的概述和讨论，以及未来研究的重点领域。Section V 结束这篇文章。</p>
+<h3 id="A-Potential-of-DL-for-the-physical-layer"><a href="#A-Potential-of-DL-for-the-physical-layer" class="headerlink" title="A. Potential of DL for the physical layer"></a>A. Potential of DL for the physical layer</h3><p>除了完整的“学习”通信系统的知识之美之外，还有一些原因可以解释为什么DL可以通过现有的物理层算法获得收益。首先，通信中的大多数信号处理算法在统计和信息理论中都有坚实的基础，而且在数学模型中通常是最优的。这些都是线性的，静止的，符合高斯统计的。然而，一个实用的系统有许多不完善和非线性的问题（例如非线性功率放大器（PAs），有限分辨率量化），这只能被这些模型近似的捕获。出于这个原因，基于DL的通信系统（或处理块）不需要一个数学上的易处理模型，并且可以针对特定的硬件配置和通道进行优化，从而可以更好地优化这种缺陷。</p>
+<p>其次，通信系统设计的指导原则之一是将信号处理分解成具有多个独立块的链;每个独立快执行一个具有良好定义和隔离的功能（例如，信源/信道编码，调制，信道估计，均衡）。尽管这种方法已经导致了我们今天所拥有的高效、通用和可控的系统，但还不清楚个别优化的处理块是否达到了最佳的端到端性能。例如，许多实际信道和短块长度的源和信道编码的分离（参见其中的10和引用）以及单独的编码和调制11被认为是次优的。尝试联合优化这些组件，例如基于因子图12，提供了增益，但是导致了难以处理的复杂系统。另一方面，一个学习好的端到端通信系统不太可能有如此严格的模块化结构，因为它针对端到端的性能进行了优化。</p>
+<p>第三，已经证明NNs是通用函数近似器13，而最近的研究显示了用NNs进行算法学习的非凡能力，这是一种被为“图灵完备15”的NNs 14。由于NNs的执行可以在并行架构上被高度并行化，并且可以用低精度的数据类型16来实现，所以有证据表明，采用这种形式的“学习”算法可以更快地执行，而且比人工“编程”的同类算法更低。</p>
+<p>第四，大规模并行处理体系结构与分布式内存体系结构，例如图形处理单元（gpu），以及日益专业化的NN推理（例如，17）芯片，已经显示出非常高效的能力，并且在并行算法18的充分利用下，具有令人印象深刻的计算吞吐量。</p>
+<p>然而，这种架构的性能在很大程度上受到了算法和高级编程语言的有效利用的限制。在广泛而深入的NNs中，计算和内存访问固有的并发性已经证明了一种令人惊讶的能力-可以在这些架构上轻松地实现高资源利用，而无需应用特定于应用程序的优化或优化。</p>
+<h3 id="B-Historical-context-and-related-work"><a href="#B-Historical-context-and-related-work" class="headerlink" title="B. Historical context and related work"></a>B. Historical context and related work</h3><p>在通信中使用ML的应用程序有很长的历史，涵盖了广泛的应用程序。这些包括信道建模和预测、本地化、均衡、解码、量化、压缩、解调、调制识别和频谱感知，以命名19、20（以及其中的参考）。然而，对于我们所知的最好的ML知识，由于上面提到的原因，很少有这样的应用程序被广泛采用或导致了广泛的商业成功。同样有趣的是，所有这些应用程序都集中在单独的接收器处理任务上，而对发送器或完整的端到端系统的考虑在文献中完全没有。</p>
+<p>开放源码的DL库（见ii-b）和现成的专用硬件，以及在计算机视觉方面的惊人进展，激发了人们对DL的通信和网络21的兴趣。目前，将DL应用到物理层的主要方法有两种。我们的目标是用DL来改进/增强现有算法的部分，或者完全取代它们。</p>
+<p>在进入第一类的论文中，有22、23和24，分别考虑改进信传播信道解码和多输入多输出（MIMO）检测。这些工作的灵感来自于通过把每个迭代都解释为一组NN层将现有的迭代算法以深度学习的方式展开25。以类似的方式，26目标是改进使用DL的稀疏线性逆问题的解决方案。</p>
+<p>在第二种分类中，论文包括27，处理低分辨率量化的MIMO系统的盲检测，以及28，在这种情况下，对不存在数学信道模型的分子通信进行检测。学习解决无线资源分配的复杂优化任务，如电力控制，在29进行了研究。我们中的一些人还演示了在学习到的端到端通信系统的初始结果30也考虑了使用当前最先进的DL工具来进行调制识别31，信号压缩32，信道解码33，34。</p>
+<h2 id="II-DEEP-LEARNING-BASICS"><a href="#II-DEEP-LEARNING-BASICS" class="headerlink" title="II. DEEP LEARNING BASICS"></a>II. DEEP LEARNING BASICS</h2><h3 id="A-Convolutional-layers"><a href="#A-Convolutional-layers" class="headerlink" title="A. Convolutional layers"></a>A. Convolutional layers</h3><h3 id="B-Machine-learning-libraries"><a href="#B-Machine-learning-libraries" class="headerlink" title="B. Machine learning libraries"></a>B. Machine learning libraries</h3><h2 id="III-EXAMPLES-OF-MACHINE-LEARNING-APPLICATIONS-FOR-THE-PHYSICAL-LAYER"><a href="#III-EXAMPLES-OF-MACHINE-LEARNING-APPLICATIONS-FOR-THE-PHYSICAL-LAYER" class="headerlink" title="III. EXAMPLES OF MACHINE LEARNING APPLICATIONS FOR THE PHYSICAL LAYER"></a>III. EXAMPLES OF MACHINE LEARNING APPLICATIONS FOR THE PHYSICAL LAYER</h2><p>在本节中，我们将展示如何将终端通信系统作为自动编码器，并通过SGD对其进行培训。这个想法被扩展到多个发射器和接收器，我们研究的是一个双用户干涉通道。在此之后，我们将引入RTNs的概念来提高衰落信道的性能，并将其应用于原始的射频时间序列数据，以实现调制分类的任务。</p>
+<h3 id="A-Autoencoders-for-end-to-end-communications-systems"><a href="#A-Autoencoders-for-end-to-end-communications-systems" class="headerlink" title="A. Autoencoders for end-to-end communications systems"></a>A. Autoencoders for end-to-end communications systems</h3><p>在最简单的形式中，通信系统由一个发射机、一个通道和一个接收器组成，如图1所示。发送者想要将M个可能的消息中的一个发送给利用了n个离散的通道的接接器。为了如此，应用了转换形式f利用信息s来生成转换信号x=f(s)。一般来说,发射机的硬件条件会对x施加一定的约束，例如，能量约束，幅度约束，平均功率约束。这个通信系统的通信率是R=k/n(位/使用的信道数)。在续集中，符号（n，k）意味着通信系统发送一个M=2k次方数的消息（即：k位）通过n个使用的信道。信道是由条件概率密度函数p（y|x）描述的，其中y 表示接收信号。接收到y，接收方应用转换方式g来生成传输消息s的估计s^。</p>
+<p>从DL的观点来看，这个简单的通信系统可以被看作是一种特殊的自动编码器[35，Ch.14]。通常，自动编码器的目标是在某个中间层找到一个低维度表示的输入，它允许在输出端进行最小误差的重构。通过这种方式，自动编码器学习非线性压缩和重构输入。在我们的例子中,自动编码器的目的是不同的。它试图学习消息s的模型表示x，关于信道映射x到y的损耗(即噪声、衰减、失真等)，以便能够以很小的错误概率来恢复传输的消息。换句话说，当大多数自动编码器为了压缩数据从输入数据中删除冗余的时候，这个自动编码器（“通道自动编码器”）通常会增加冗余，学习一种中间表现形式，以表示对信道的干扰。</p>
+<p>图2显示了这样一个自动编码器的例子。在这里，发送器由一个前馈NN组成，它有多个密集层，然后是一个标准化层，确保在x上满足物理约束。注意发射器的输入s被编码为one-hot向量，一个M维的向量，第s个元素等于1而其他的元素等于0.信道由一个带有固定方差的附加噪声层表示$$B=(2RE/N)^ -1$$。Eb=N0表示每比特（Eb）的能量，即噪声功率谱密度（N0）比。接收器也用前馈NN实现。它的最后一层使用了一个softmax激活函数，输出p 是一个具有所有可能的分类信息的概率向量。解码后的信息估计s^对应的是p元素中概率最高的索引，。自动编码器可以在所有可能的信息s 属于M的集合上使用SGD进行端到端训练，使用在1和p之间的适合分类的的绝对交叉熵损失函数。</p>
+<p>图3比较了一个由训练的自动编码器（7,4）所实现的采用二进制相移键控（BPSK）调制和用二进制的硬编码解码的汉明（7,4）编码，或最大似然解码（MLD）来对抗误块率BLER）的通信系统的误块率（BLER）。两个系统都以R=4/7的速度运行。为了比较，我们还提供了未使用BPSK（44）编码的误块率（BLER）。这个结果表明，自动编码器在没有任何先验知识的情况下，已经学习了与使用MLD（7,4）的汉明码相同的编码和解码函数。自动编码器的布局在表IV中提供。尽管单个层可以表示从信息索引到对应传输向量的相同映射，但我们的实验表明SGD通过两个传输层而不是一个传输层来能够收敛到更好的全局最优点。这种增长的搜索空间维度参数通过使这些结果在优化过程中更有可能成为鞍点，可能实际上更有助于减少收敛到次优点的可能性。训练是在使用学习率0:001的Adam46方法在固定数值的Eb=N0=7 dB（cf. Section IV-B）的环境中完成的。我们注意到，在训练中增加批量的大小有助于提高精确度。对于所有其他实现细节，我们引用源代码44。</p>
+<p>图3b显示了类似的比较，但是对于一个（8,8）和（2,2）的通信系统来说。R = 1。令人惊讶的是，虽然自动编码器实现了在（2,2）下与未编码的BPSK相同的误块率BLER，但它在（8,8）的全部Eb/N0范围内的性能优于后者。这意味着它已经学习了一些联合编码和调制方案，这样就可302以实现编码增益。为了进行一个真正公平的比较，这个结果应该与使用通道代码的高阶调制方案进行比较（或者在八个维度上的最优包装）。用不同的基准对各种通道类型和参数的详细性能比较（n，k），超出了本文的范围，将留给将来的研究。</p>
+<h3 id="B-Autoencoders-for-multiple-transmitters-and-receivers"><a href="#B-Autoencoders-for-multiple-transmitters-and-receivers" class="headerlink" title="B. Autoencoders for multiple transmitters and receivers"></a>B. Autoencoders for multiple transmitters and receivers</h3><h3 id="C-Radio-transformer-networks-for-augmented-signal-processing-algorithms"><a href="#C-Radio-transformer-networks-for-augmented-signal-processing-algorithms" class="headerlink" title="C. Radio transformer networks for augmented signal processing algorithms"></a>C. Radio transformer networks for augmented signal processing algorithms</h3><p>##CONCLUSION</p>
+<p>我们已经讨论了几个关于应用DL到物理层的有前景的新应用。最重要的是，我们已经介绍了一种将通信视为端到端的重构优化任务的新方法：使用自动编码器学习发射机和接收机的实现以及没有任何先验知识的信号编码。这种方法相较于传统的基准线在各种情况下都显示出极其具有竞争性的BLER 性能，虽然长块长度的可伸缩性仍然是一个挑战。除了潜在的在可靠性或延迟方面的性能改进，我们的方法可以提供有趣的见解关于在最优方案未知的场景（例如干扰信道）的最优的通信方案（例如星座映射）。我们相信这是一个把DL和ML应用于通信的广泛研究的开端，并对随着该领域的成熟未来无线通信系统得到增添的可能性感到兴奋。现在，有很多开放的问题需要解决以及实际的收获需要拥有。我们已经确定了未来研究的重点领域，并强调了可以用来比较不同的ML模型和算法的性能的基准问题和数据集的需求。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/08/Deep Learning for Wireless Physical Layer -Opportunities and Challenges/" class="archive-article-date">
-  	<time datetime="2018-03-08T05:18:00.697Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-08</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/06/An Introduction to Deep Learning for the Physical Layer/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/07/Deep Learning-Based MIMO Communications/" class="archive-article-date">
-  	<time datetime="2018-03-07T12:23:29.332Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/03/07/Deep Learning-Based MIMO Communications/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/16/Logistic Regression with a Neural Network mindset v4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">class 1 - week 2</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/06/An Introduction to Deep Learning for the Physical Layer/" class="archive-article-date">
-  	<time datetime="2018-03-06T06:01:28.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/16/Logistic Regression with a Neural Network mindset v4/" class="archive-article-date">
-  	<time datetime="2018-01-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/16/Logistic Regression with a Neural Network mindset v4/">class 1 - week 2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/deeplearnig//" class="article-tag-list-link color2">deeplearnig</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/02/second/" class="archive-article-date">
-  	<time datetime="2018-01-02T07:01:42.301Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-02</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/02/second/">second</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/日常记录//" class="article-tag-list-link color5">日常记录</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/01/first/" class="archive-article-date">
-  	<time datetime="2017-12-31T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/01/first/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/日常记录//" class="article-tag-list-link color5">日常记录</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -372,8 +354,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

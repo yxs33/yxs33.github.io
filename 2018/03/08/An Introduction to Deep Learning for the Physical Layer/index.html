@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>yxs33</title>
+  <title>AI结合通信 | yxs33</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yxs33">
-<meta property="og:url" content="http://yoursite.com/2018/03/06/An Introduction to Deep Learning for the Physical Layer/index.html">
+<meta property="og:title" content="AI结合通信">
+<meta property="og:url" content="http://yoursite.com/2018/03/08/An Introduction to Deep Learning for the Physical Layer/index.html">
 <meta property="og:site_name" content="yxs33">
 <meta property="og:description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-07T12:11:02.892Z">
+<meta property="og:updated_time" content="2018-03-08T06:45:24.084Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yxs33">
+<meta name="twitter:title" content="AI结合通信">
 <meta name="twitter:description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
   
     <link rel="alternative" href="/atom.xml" title="yxs33" type="application/atom+xml">
@@ -161,6 +161,21 @@
             <article id="post-An Introduction to Deep Learning for the Physical Layer" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AI结合通信
+    </h1>
+  
+
+        
+        <a href="/2018/03/08/An Introduction to Deep Learning for the Physical Layer/" class="archive-article-date">
+  	<time datetime="2018-03-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-08</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <p>#An Introduction to Deep Learning for the Physical Layer</p>
@@ -192,8 +207,7 @@
 <p>图2显示了这样一个自动编码器的例子。在这里，发送器由一个前馈NN组成，它有多个密集层，然后是一个标准化层，确保在x上满足物理约束。注意发射器的输入s被编码为one-hot向量，一个M维的向量，第s个元素等于1而其他的元素等于0.信道由一个带有固定方差的附加噪声层表示$$B=(2RE/N)^ -1$$。Eb=N0表示每比特（Eb）的能量，即噪声功率谱密度（N0）比。接收器也用前馈NN实现。它的最后一层使用了一个softmax激活函数，输出p 是一个具有所有可能的分类信息的概率向量。解码后的信息估计s^对应的是p元素中概率最高的索引，。自动编码器可以在所有可能的信息s 属于M的集合上使用SGD进行端到端训练，使用在1和p之间的适合分类的的绝对交叉熵损失函数。</p>
 <p>图3比较了一个由训练的自动编码器（7,4）所实现的采用二进制相移键控（BPSK）调制和用二进制的硬编码解码的汉明（7,4）编码，或最大似然解码（MLD）来对抗误块率BLER）的通信系统的误块率（BLER）。两个系统都以R=4/7的速度运行。为了比较，我们还提供了未使用BPSK（44）编码的误块率（BLER）。这个结果表明，自动编码器在没有任何先验知识的情况下，已经学习了与使用MLD（7,4）的汉明码相同的编码和解码函数。自动编码器的布局在表IV中提供。尽管单个层可以表示从信息索引到对应传输向量的相同映射，但我们的实验表明SGD通过两个传输层而不是一个传输层来能够收敛到更好的全局最优点。这种增长的搜索空间维度参数通过使这些结果在优化过程中更有可能成为鞍点，可能实际上更有助于减少收敛到次优点的可能性。训练是在使用学习率0:001的Adam46方法在固定数值的Eb=N0=7 dB（cf. Section IV-B）的环境中完成的。我们注意到，在训练中增加批量的大小有助于提高精确度。对于所有其他实现细节，我们引用源代码44。</p>
 <p>图3b显示了类似的比较，但是对于一个（8,8）和（2,2）的通信系统来说。R = 1。令人惊讶的是，虽然自动编码器实现了在（2,2）下与未编码的BPSK相同的误块率BLER，但它在（8,8）的全部Eb/N0范围内的性能优于后者。这意味着它已经学习了一些联合编码和调制方案，这样就可302以实现编码增益。为了进行一个真正公平的比较，这个结果应该与使用通道代码的高阶调制方案进行比较（或者在八个维度上的最优包装）。用不同的基准对各种通道类型和参数的详细性能比较（n，k），超出了本文的范围，将留给将来的研究。</p>
-<h3 id="B-Autoencoders-for-multiple-transmitters-and-receivers"><a href="#B-Autoencoders-for-multiple-transmitters-and-receivers" class="headerlink" title="B. Autoencoders for multiple transmitters and receivers"></a>B. Autoencoders for multiple transmitters and receivers</h3><h3 id="C-Radio-transformer-networks-for-augmented-signal-processing-algorithms"><a href="#C-Radio-transformer-networks-for-augmented-signal-processing-algorithms" class="headerlink" title="C. Radio transformer networks for augmented signal processing algorithms"></a>C. Radio transformer networks for augmented signal processing algorithms</h3><p>##CONCLUSION</p>
-<p>我们已经讨论了几个关于应用DL到物理层的有前景的新应用。最重要的是，我们已经介绍了一种将通信视为端到端的重构优化任务的新方法：使用自动编码器学习发射机和接收机的实现以及没有任何先验知识的信号编码。这种方法相较于传统的基准线在各种情况下都显示出极其具有竞争性的BLER 性能，虽然长块长度的可伸缩性仍然是一个挑战。除了潜在的在可靠性或延迟方面的性能改进，我们的方法可以提供有趣的见解关于在最优方案未知的场景（例如干扰信道）的最优的通信方案（例如星座映射）。我们相信这是一个把DL和ML应用于通信的广泛研究的开端，并对随着该领域的成熟未来无线通信系统得到增添的可能性感到兴奋。现在，有很多开放的问题需要解决以及实际的收获需要拥有。我们已经确定了未来研究的重点领域，并强调了可以用来比较不同的ML模型和算法的性能的基准问题和数据集的需求。</p>
+<h3 id="B-Autoencoders-for-multiple-transmitters-and-receivers"><a href="#B-Autoencoders-for-multiple-transmitters-and-receivers" class="headerlink" title="B. Autoencoders for multiple transmitters and receivers"></a>B. Autoencoders for multiple transmitters and receivers</h3><h3 id="C-Radio-transformer-networks-for-augmented-signal-processing-algorithms"><a href="#C-Radio-transformer-networks-for-augmented-signal-processing-algorithms" class="headerlink" title="C. Radio transformer networks for augmented signal processing algorithms"></a>C. Radio transformer networks for augmented signal processing algorithms</h3><h2 id="CONCLUSION"><a href="#CONCLUSION" class="headerlink" title="CONCLUSION"></a>CONCLUSION</h2><p>我们已经讨论了几个关于应用DL到物理层的有前景的新应用。最重要的是，我们已经介绍了一种将通信视为端到端的重构优化任务的新方法：使用自动编码器学习发射机和接收机的实现以及没有任何先验知识的信号编码。这种方法相较于传统的基准线在各种情况下都显示出极其具有竞争性的BLER 性能，虽然长块长度的可伸缩性仍然是一个挑战。除了潜在的在可靠性或延迟方面的性能改进，我们的方法可以提供有趣的见解关于在最优方案未知的场景（例如干扰信道）的最优的通信方案（例如星座映射）。我们相信这是一个把DL和ML应用于通信的广泛研究的开端，并对随着该领域的成熟未来无线通信系统得到增添的可能性感到兴奋。现在，有很多开放的问题需要解决以及实际的收获需要拥有。我们已经确定了未来研究的重点领域，并强调了可以用来比较不同的ML模型和算法的性能的基准问题和数据集的需求。</p>
 
       
 
@@ -224,6 +238,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/日常记录//" class="article-tag-list-link color5">日常记录</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -273,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/06/An Introduction to Deep Learning for the Physical Layer/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/08/An Introduction to Deep Learning for the Physical Layer/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -287,18 +312,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/07/Deep Learning-Based MIMO Communications/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/01/16/Logistic Regression with a Neural Network mindset v4/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">class 1 - week 2</div>
+    <a href="/2018/03/08/Deep Learning for Wireless Physical Layer -Opportunities and Challenges/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AI结合通信</div>
       <i class="icon-circle-right"></i>
     </a>
   

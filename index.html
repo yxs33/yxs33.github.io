@@ -159,6 +159,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-An Introduction to Deep Learning for the Physical Layer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/08/An Introduction to Deep Learning for the Physical Layer/">深度学习应用到物理层的介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/08/An Introduction to Deep Learning for the Physical Layer/" class="archive-article-date">
+  	<time datetime="2018-03-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="An-Introduction-to-Deep-Learning-for-the-Physical-Layer"><a href="#An-Introduction-to-Deep-Learning-for-the-Physical-Layer" class="headerlink" title="An Introduction to Deep Learning for the Physical Layer"></a>An Introduction to Deep Learning for the Physical Layer</h1><hr>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展到多重网络发射器和接收器并提出了无线电变换网络（RTNs）的概念作为一种结合机器学习（ML）模型中的专业领域知识的方式。最后,我们展示了卷积神经网络关于未处理的IQ采样值的调制分类的应用 ，相比于传统的依赖特征的方法达到了具有竞争性的准确率。这篇论文主要是公然挑战的讨论和未来的研究领域。</p>
+<h2 id="I-INTRODUCTION"><a href="#I-INTRODUCTION" class="headerlink" title="I. INTRODUCTION"></a>I. INTRODUCTION</h2><p>通信是一个需要大量专业知识的领域，例如，如何对不同类型的通道进行建模，对各种硬件缺陷进行补偿，和设计最佳的信号和检测方案以确保数据传输的可靠性。因此，它是一个复杂而成熟的工程领域，有许多不同的研究领域 都见过关于性能提升而收益递减，特别是在物理层上。任何基于机器学习（ML）或深度学习（DL）的方法必须通过高水平的性能，才能提供切实的新利益。</p>
+<p>在计算机视觉和自然语言等领域处理，DL很亮眼是因为很难用严格的数学模型描述真实世界的图像或语言。例如，编写一个强悍的算法来检测手写数字或图像目标几乎是不可能的任务，但在现在实现DL算法以超过人类的水平的准确性去学习来完成这项任务几乎是微不足道的。在通信方面，换句话说，我们可以设计出直接的传输信号用于各种信道的符号检测算法和系统模型（例如，探测加上了白高斯噪声的星座符号（AWGN））。因此，只要这样的模型能充分捕获真实效果，我们没有期望DL能在物理层上产生显著的改进。尽管如此，我们相信我们在这篇文章中探讨的DL应用程序是一种有用而深刻的从根本上重新思考通信系统设计问题的方法，并对在很难描述易处理的数学模型的复杂的通信场景中的性能提升保持承诺。我们的主要贡献如下：</p>
+<ul>
+<li>我们演示了对于给定的针对选定的损失函数进行了优化的信道模型，我们可以学习完全的发射机和接收机实现(例如，最小化块错误率（BLER））。有趣的是，这种“习得”的系统与当前最先进技术水平相比是有竞争力的。这里的关键思想是将发射机、通道和接收器作为一个可以训练为自动编码器的深度神经网络（NN）。这种方法的妙处在于，它甚至可以应用于最优解是未知的信道模型和损失函数。</li>
+<li>我们将这个概念扩展到一个敌对的网络中，这种网络由多个传输-接收方对容量进行竞争。这就导致了寻找最佳信号方案的干扰信道是一个需要长期研究的问题。我们证明了这样的设置也可以表示为具有多个输入和输出的NN。以及所有的发送器和接收方实现都可以对一个公共或个人的性能指标进行联合优化。</li>
+<li>我们引入了无线电变换器网络（RTNs）作为一种将专业知识集成到DL模型中的方法。例如，RTNs允许在接收器上执行预定义的校正算法（“变换器”）（例如，一个复杂的数值，与一个向量的卷积），这可能会被另一个NN所学习的参数所接受。这个NN可以集成到在执行转换信号（例如，符号检测）的任务的端到端培训过程中。</li>
+<li>我们研究NNs在复数IQ采样样本上的应用，解决调制分类的问题，并展示了卷积神经网络（CNNs）-大多数DL计算机视觉系统的基石，它可以超越基于专业特征的传统分类技术。这一结果反映了在不同领域的DL的无情趋势，超越并取代长期使用的专业特征，例如，尺度不变特性转换（SIFT）和词汇量。</li>
+</ul>
+<p>本文提出的观点为今后的研究提供了许多有趣的途径，并将详细讨论。我们希望这些能够激发学术界的广泛兴趣。本文的其余部分的结构如下：Section I-A 讨论了DL对物理层的潜在好处。Section I-B介绍了相关工作。Section II介绍了深度学习的背景。在Section III中，介绍了几种用于通信的DL应用。Section IV 包含了对开放问题的概述和讨论，以及未来研究的重点领域。Section V 结束这篇文章。</p>
+<h3 id="A-Potential-of-DL-for-the-physical-layer"><a href="#A-Potential-of-DL-for-the-physical-layer" class="headerlink" title="A. Potential of DL for the physical layer"></a>A. Potential of DL for the physical layer</h3><p>除了完整的“学习”通信系统的知识之美之外，还有一些原因可以解释为什么DL可以通过现有的物理层算法获得收益。首先，通信中的大多数信号处理算法在统计和信息理论中都有坚实的基础，而且在数学模型中通常是最优的。这些都是线性的，静止的，符合高斯统计的。然而，一个实用的系统有许多不完善和非线性的问题（例如非线性功率放大器（PAs），有限分辨率量化），这只能被这些模型近似的捕获。出于这个原因，基于DL的通信系统（或处理块）不需要一个数学上的易处理模型，并且可以针对特定的硬件配置和通道进行优化，从而可以更好地优化这种缺陷。</p>
+<p>其次，通信系统设计的指导原则之一是将信号处理分解成具有多个独立块的链;每个独立快执行一个具有良好定义和隔离的功能（例如，信源/信道编码，调制，信道估计，均衡）。尽管这种方法已经导致了我们今天所拥有的高效、通用和可控的系统，但还不清楚个别优化的处理块是否达到了最佳的端到端性能。例如，许多实际信道和短块长度的源和信道编码的分离（参见其中的10和引用）以及单独的编码和调制11被认为是次优的。尝试联合优化这些组件，例如基于因子图12，提供了增益，但是导致了难以处理的复杂系统。另一方面，一个学习好的端到端通信系统不太可能有如此严格的模块化结构，因为它针对端到端的性能进行了优化。</p>
+<p>第三，已经证明NNs是通用函数近似器13，而最近的研究显示了用NNs进行算法学习的非凡能力，这是一种被为“图灵完备15”的NNs 14。由于NNs的执行可以在并行架构上被高度并行化，并且可以用低精度的数据类型16来实现，所以有证据表明，采用这种形式的“学习”算法可以更快地执行，而且比人工“编程”的同类算法更低。</p>
+<p>第四，大规模并行处理体系结构与分布式内存体系结构，例如图形处理单元（gpu），以及日益专业化的NN推理（例如，17）芯片，已经显示出非常高效的能力，并且在并行算法18的充分利用下，具有令人印象深刻的计算吞吐量。</p>
+<p>然而，这种架构的性能在很大程度上受到了算法和高级编程语言的有效利用的限制。在广泛而深入的NNs中，计算和内存访问固有的并发性已经证明了一种令人惊讶的能力-可以在这些架构上轻松地实现高资源利用，而无需应用特定于应用程序的优化或优化。</p>
+<h3 id="B-Historical-context-and-related-work"><a href="#B-Historical-context-and-related-work" class="headerlink" title="B. Historical context and related work"></a>B. Historical context and related work</h3><p>在通信中使用ML的应用程序有很长的历史，涵盖了广泛的应用程序。这些包括信道建模和预测、本地化、均衡、解码、量化、压缩、解调、调制识别和频谱感知，以命名19、20（以及其中的参考）。然而，对于我们所知的最好的ML知识，由于上面提到的原因，很少有这样的应用程序被广泛采用或导致了广泛的商业成功。同样有趣的是，所有这些应用程序都集中在单独的接收器处理任务上，而对发送器或完整的端到端系统的考虑在文献中完全没有。</p>
+<p>开放源码的DL库（见ii-b）和现成的专用硬件，以及在计算机视觉方面的惊人进展，激发了人们对DL的通信和网络21的兴趣。目前，将DL应用到物理层的主要方法有两种。我们的目标是用DL来改进/增强现有算法的部分，或者完全取代它们。</p>
+<p>在进入第一类的论文中，有22、23和24，分别考虑改进信传播信道解码和多输入多输出（MIMO）检测。这些工作的灵感来自于通过把每个迭代都解释为一组NN层将现有的迭代算法以深度学习的方式展开25。以类似的方式，26目标是改进使用DL的稀疏线性逆问题的解决方案。</p>
+<p>在第二种分类中，论文包括27，处理低分辨率量化的MIMO系统的盲检测，以及28，在这种情况下，对不存在数学信道模型的分子通信进行检测。学习解决无线资源分配的复杂优化任务，如电力控制，在29进行了研究。我们中的一些人还演示了在学习到的端到端通信系统的初始结果30也考虑了使用当前最先进的DL工具来进行调制识别31，信号压缩32，信道解码33，34。</p>
+<h2 id="II-DEEP-LEARNING-BASICS"><a href="#II-DEEP-LEARNING-BASICS" class="headerlink" title="II. DEEP LEARNING BASICS"></a>II. DEEP LEARNING BASICS</h2><h3 id="A-Convolutional-layers"><a href="#A-Convolutional-layers" class="headerlink" title="A. Convolutional layers"></a>A. Convolutional layers</h3><h3 id="B-Machine-learning-libraries"><a href="#B-Machine-learning-libraries" class="headerlink" title="B. Machine learning libraries"></a>B. Machine learning libraries</h3><h2 id="III-EXAMPLES-OF-MACHINE-LEARNING-APPLICATIONS-FOR-THE-PHYSICAL-LAYER"><a href="#III-EXAMPLES-OF-MACHINE-LEARNING-APPLICATIONS-FOR-THE-PHYSICAL-LAYER" class="headerlink" title="III. EXAMPLES OF MACHINE LEARNING APPLICATIONS FOR THE PHYSICAL LAYER"></a>III. EXAMPLES OF MACHINE LEARNING APPLICATIONS FOR THE PHYSICAL LAYER</h2><p>在本节中，我们将展示如何将终端通信系统作为自动编码器，并通过SGD对其进行培训。这个想法被扩展到多个发射器和接收器，我们研究的是一个双用户干涉通道。在此之后，我们将引入RTNs的概念来提高衰落信道的性能，并将其应用于原始的射频时间序列数据，以实现调制分类的任务。</p>
+<h3 id="A-Autoencoders-for-end-to-end-communications-systems"><a href="#A-Autoencoders-for-end-to-end-communications-systems" class="headerlink" title="A. Autoencoders for end-to-end communications systems"></a>A. Autoencoders for end-to-end communications systems</h3><p>在最简单的形式中，通信系统由一个发射机、一个通道和一个接收器组成，如图1所示。发送者想要将M个可能的消息中的一个发送给利用了n个离散的通道的接接器。为了如此，应用了转换形式f利用信息s来生成转换信号x=f(s)。一般来说,发射机的硬件条件会对x施加一定的约束，例如，能量约束，幅度约束，平均功率约束。这个通信系统的通信率是R=k/n(位/使用的信道数)。在续集中，符号（n，k）意味着通信系统发送一个M=2k次方数的消息（即：k位）通过n个使用的信道。信道是由条件概率密度函数p（y|x）描述的，其中y 表示接收信号。接收到y，接收方应用转换方式g来生成传输消息s的估计s^。</p>
+<p>从DL的观点来看，这个简单的通信系统可以被看作是一种特殊的自动编码器[35，Ch.14]。通常，自动编码器的目标是在某个中间层找到一个低维度表示的输入，它允许在输出端进行最小误差的重构。通过这种方式，自动编码器学习非线性压缩和重构输入。在我们的例子中,自动编码器的目的是不同的。它试图学习消息s的模型表示x，关于信道映射x到y的损耗(即噪声、衰减、失真等)，以便能够以很小的错误概率来恢复传输的消息。换句话说，当大多数自动编码器为了压缩数据从输入数据中删除冗余的时候，这个自动编码器（“通道自动编码器”）通常会增加冗余，学习一种中间表现形式，以表示对信道的干扰。</p>
+<p>图2显示了这样一个自动编码器的例子。在这里，发送器由一个前馈NN组成，它有多个密集层，然后是一个标准化层，确保在x上满足物理约束。注意发射器的输入s被编码为one-hot向量，一个M维的向量，第s个元素等于1而其他的元素等于0.信道由一个带有固定方差的附加噪声层表示$$B=(2RE/N)^ -1$$。Eb=N0表示每比特（Eb）的能量，即噪声功率谱密度（N0）比。接收器也用前馈NN实现。它的最后一层使用了一个softmax激活函数，输出p 是一个具有所有可能的分类信息的概率向量。解码后的信息估计s^对应的是p元素中概率最高的索引，。自动编码器可以在所有可能的信息s 属于M的集合上使用SGD进行端到端训练，使用在1和p之间的适合分类的的绝对交叉熵损失函数。</p>
+<p>图3比较了一个由训练的自动编码器（7,4）所实现的采用二进制相移键控（BPSK）调制和用二进制的硬编码解码的汉明（7,4）编码，或最大似然解码（MLD）来对抗误块率BLER）的通信系统的误块率（BLER）。两个系统都以R=4/7的速度运行。为了比较，我们还提供了未使用BPSK（44）编码的误块率（BLER）。这个结果表明，自动编码器在没有任何先验知识的情况下，已经学习了与使用MLD（7,4）的汉明码相同的编码和解码函数。自动编码器的布局在表IV中提供。尽管单个层可以表示从信息索引到对应传输向量的相同映射，但我们的实验表明SGD通过两个传输层而不是一个传输层来能够收敛到更好的全局最优点。这种增长的搜索空间维度参数通过使这些结果在优化过程中更有可能成为鞍点，可能实际上更有助于减少收敛到次优点的可能性。训练是在使用学习率0:001的Adam46方法在固定数值的Eb=N0=7 dB（cf. Section IV-B）的环境中完成的。我们注意到，在训练中增加批量的大小有助于提高精确度。对于所有其他实现细节，我们引用源代码44。</p>
+<p>图3b显示了类似的比较，但是对于一个（8,8）和（2,2）的通信系统来说。R = 1。令人惊讶的是，虽然自动编码器实现了在（2,2）下与未编码的BPSK相同的误块率BLER，但它在（8,8）的全部Eb/N0范围内的性能优于后者。这意味着它已经学习了一些联合编码和调制方案，这样就可302以实现编码增益。为了进行一个真正公平的比较，这个结果应该与使用通道代码的高阶调制方案进行比较（或者在八个维度上的最优包装）。用不同的基准对各种通道类型和参数的详细性能比较（n，k），超出了本文的范围，将留给将来的研究。</p>
+<h3 id="B-Autoencoders-for-multiple-transmitters-and-receivers"><a href="#B-Autoencoders-for-multiple-transmitters-and-receivers" class="headerlink" title="B. Autoencoders for multiple transmitters and receivers"></a>B. Autoencoders for multiple transmitters and receivers</h3><h3 id="C-Radio-transformer-networks-for-augmented-signal-processing-algorithms"><a href="#C-Radio-transformer-networks-for-augmented-signal-processing-algorithms" class="headerlink" title="C. Radio transformer networks for augmented signal processing algorithms"></a>C. Radio transformer networks for augmented signal processing algorithms</h3><h2 id="CONCLUSION"><a href="#CONCLUSION" class="headerlink" title="CONCLUSION"></a>CONCLUSION</h2><p>我们已经讨论了几个关于应用DL到物理层的有前景的新应用。最重要的是，我们已经介绍了一种将通信视为端到端的重构优化任务的新方法：使用自动编码器学习发射机和接收机的实现以及没有任何先验知识的信号编码。这种方法相较于传统的基准线在各种情况下都显示出极其具有竞争性的BLER 性能，虽然长块长度的可伸缩性仍然是一个挑战。除了潜在的在可靠性或延迟方面的性能改进，我们的方法可以提供有趣的见解关于在最优方案未知的场景（例如干扰信道）的最优的通信方案（例如星座映射）。我们相信这是一个把DL和ML应用于通信的广泛研究的开端，并对随着该领域的成熟未来无线通信系统得到增添的可能性感到兴奋。现在，有很多开放的问题需要解决以及实际的收获需要拥有。我们已经确定了未来研究的重点领域，并强调了可以用来比较不同的ML模型和算法的性能的基准问题和数据集的需求。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/AI通信//" class="article-tag-list-link color5">AI通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/08/An Introduction to Deep Learning for the Physical Layer/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Deep Learning for Wireless Physical Layer -Opportunities and Challenges" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -233,19 +333,19 @@
 
 
   
-    <article id="post-An Introduction to Deep Learning for the Physical Layer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-pyda-c3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/08/An Introduction to Deep Learning for the Physical Layer/">深度学习应用到物理层的介绍</a>
+      <a class="article-title" href="/2018/03/08/pyda-c3/">第3章 Python的数据结构、函数和文件个人重点</a>
     </h1>
   
 
         
-        <a href="/2018/03/08/An Introduction to Deep Learning for the Physical Layer/" class="archive-article-date">
+        <a href="/2018/03/08/pyda-c3/" class="archive-article-date">
   	<time datetime="2018-03-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-08</time>
 </a>
         
@@ -253,33 +353,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="An-Introduction-to-Deep-Learning-for-the-Physical-Layer"><a href="#An-Introduction-to-Deep-Learning-for-the-Physical-Layer" class="headerlink" title="An Introduction to Deep Learning for the Physical Layer"></a>An Introduction to Deep Learning for the Physical Layer</h1><hr>
-<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展到多重网络发射器和接收器并提出了无线电变换网络（RTNs）的概念作为一种结合机器学习（ML）模型中的专业领域知识的方式。最后,我们展示了卷积神经网络关于未处理的IQ采样值的调制分类的应用 ，相比于传统的依赖特征的方法达到了具有竞争性的准确率。这篇论文主要是公然挑战的讨论和未来的研究领域。</p>
-<h2 id="I-INTRODUCTION"><a href="#I-INTRODUCTION" class="headerlink" title="I. INTRODUCTION"></a>I. INTRODUCTION</h2><p>通信是一个需要大量专业知识的领域，例如，如何对不同类型的通道进行建模，对各种硬件缺陷进行补偿，和设计最佳的信号和检测方案以确保数据传输的可靠性。因此，它是一个复杂而成熟的工程领域，有许多不同的研究领域 都见过关于性能提升而收益递减，特别是在物理层上。任何基于机器学习（ML）或深度学习（DL）的方法必须通过高水平的性能，才能提供切实的新利益。</p>
-<p>在计算机视觉和自然语言等领域处理，DL很亮眼是因为很难用严格的数学模型描述真实世界的图像或语言。例如，编写一个强悍的算法来检测手写数字或图像目标几乎是不可能的任务，但在现在实现DL算法以超过人类的水平的准确性去学习来完成这项任务几乎是微不足道的。在通信方面，换句话说，我们可以设计出直接的传输信号用于各种信道的符号检测算法和系统模型（例如，探测加上了白高斯噪声的星座符号（AWGN））。因此，只要这样的模型能充分捕获真实效果，我们没有期望DL能在物理层上产生显著的改进。尽管如此，我们相信我们在这篇文章中探讨的DL应用程序是一种有用而深刻的从根本上重新思考通信系统设计问题的方法，并对在很难描述易处理的数学模型的复杂的通信场景中的性能提升保持承诺。我们的主要贡献如下：</p>
-<ul>
-<li>我们演示了对于给定的针对选定的损失函数进行了优化的信道模型，我们可以学习完全的发射机和接收机实现(例如，最小化块错误率（BLER））。有趣的是，这种“习得”的系统与当前最先进技术水平相比是有竞争力的。这里的关键思想是将发射机、通道和接收器作为一个可以训练为自动编码器的深度神经网络（NN）。这种方法的妙处在于，它甚至可以应用于最优解是未知的信道模型和损失函数。</li>
-<li>我们将这个概念扩展到一个敌对的网络中，这种网络由多个传输-接收方对容量进行竞争。这就导致了寻找最佳信号方案的干扰信道是一个需要长期研究的问题。我们证明了这样的设置也可以表示为具有多个输入和输出的NN。以及所有的发送器和接收方实现都可以对一个公共或个人的性能指标进行联合优化。</li>
-<li>我们引入了无线电变换器网络（RTNs）作为一种将专业知识集成到DL模型中的方法。例如，RTNs允许在接收器上执行预定义的校正算法（“变换器”）（例如，一个复杂的数值，与一个向量的卷积），这可能会被另一个NN所学习的参数所接受。这个NN可以集成到在执行转换信号（例如，符号检测）的任务的端到端培训过程中。</li>
-<li>我们研究NNs在复数IQ采样样本上的应用，解决调制分类的问题，并展示了卷积神经网络（CNNs）-大多数DL计算机视觉系统的基石，它可以超越基于专业特征的传统分类技术。这一结果反映了在不同领域的DL的无情趋势，超越并取代长期使用的专业特征，例如，尺度不变特性转换（SIFT）和词汇量。</li>
-</ul>
-<p>本文提出的观点为今后的研究提供了许多有趣的途径，并将详细讨论。我们希望这些能够激发学术界的广泛兴趣。本文的其余部分的结构如下：Section I-A 讨论了DL对物理层的潜在好处。Section I-B介绍了相关工作。Section II介绍了深度学习的背景。在Section III中，介绍了几种用于通信的DL应用。Section IV 包含了对开放问题的概述和讨论，以及未来研究的重点领域。Section V 结束这篇文章。</p>
-<h3 id="A-Potential-of-DL-for-the-physical-layer"><a href="#A-Potential-of-DL-for-the-physical-layer" class="headerlink" title="A. Potential of DL for the physical layer"></a>A. Potential of DL for the physical layer</h3><p>除了完整的“学习”通信系统的知识之美之外，还有一些原因可以解释为什么DL可以通过现有的物理层算法获得收益。首先，通信中的大多数信号处理算法在统计和信息理论中都有坚实的基础，而且在数学模型中通常是最优的。这些都是线性的，静止的，符合高斯统计的。然而，一个实用的系统有许多不完善和非线性的问题（例如非线性功率放大器（PAs），有限分辨率量化），这只能被这些模型近似的捕获。出于这个原因，基于DL的通信系统（或处理块）不需要一个数学上的易处理模型，并且可以针对特定的硬件配置和通道进行优化，从而可以更好地优化这种缺陷。</p>
-<p>其次，通信系统设计的指导原则之一是将信号处理分解成具有多个独立块的链;每个独立快执行一个具有良好定义和隔离的功能（例如，信源/信道编码，调制，信道估计，均衡）。尽管这种方法已经导致了我们今天所拥有的高效、通用和可控的系统，但还不清楚个别优化的处理块是否达到了最佳的端到端性能。例如，许多实际信道和短块长度的源和信道编码的分离（参见其中的10和引用）以及单独的编码和调制11被认为是次优的。尝试联合优化这些组件，例如基于因子图12，提供了增益，但是导致了难以处理的复杂系统。另一方面，一个学习好的端到端通信系统不太可能有如此严格的模块化结构，因为它针对端到端的性能进行了优化。</p>
-<p>第三，已经证明NNs是通用函数近似器13，而最近的研究显示了用NNs进行算法学习的非凡能力，这是一种被为“图灵完备15”的NNs 14。由于NNs的执行可以在并行架构上被高度并行化，并且可以用低精度的数据类型16来实现，所以有证据表明，采用这种形式的“学习”算法可以更快地执行，而且比人工“编程”的同类算法更低。</p>
-<p>第四，大规模并行处理体系结构与分布式内存体系结构，例如图形处理单元（gpu），以及日益专业化的NN推理（例如，17）芯片，已经显示出非常高效的能力，并且在并行算法18的充分利用下，具有令人印象深刻的计算吞吐量。</p>
-<p>然而，这种架构的性能在很大程度上受到了算法和高级编程语言的有效利用的限制。在广泛而深入的NNs中，计算和内存访问固有的并发性已经证明了一种令人惊讶的能力-可以在这些架构上轻松地实现高资源利用，而无需应用特定于应用程序的优化或优化。</p>
-<h3 id="B-Historical-context-and-related-work"><a href="#B-Historical-context-and-related-work" class="headerlink" title="B. Historical context and related work"></a>B. Historical context and related work</h3><p>在通信中使用ML的应用程序有很长的历史，涵盖了广泛的应用程序。这些包括信道建模和预测、本地化、均衡、解码、量化、压缩、解调、调制识别和频谱感知，以命名19、20（以及其中的参考）。然而，对于我们所知的最好的ML知识，由于上面提到的原因，很少有这样的应用程序被广泛采用或导致了广泛的商业成功。同样有趣的是，所有这些应用程序都集中在单独的接收器处理任务上，而对发送器或完整的端到端系统的考虑在文献中完全没有。</p>
-<p>开放源码的DL库（见ii-b）和现成的专用硬件，以及在计算机视觉方面的惊人进展，激发了人们对DL的通信和网络21的兴趣。目前，将DL应用到物理层的主要方法有两种。我们的目标是用DL来改进/增强现有算法的部分，或者完全取代它们。</p>
-<p>在进入第一类的论文中，有22、23和24，分别考虑改进信传播信道解码和多输入多输出（MIMO）检测。这些工作的灵感来自于通过把每个迭代都解释为一组NN层将现有的迭代算法以深度学习的方式展开25。以类似的方式，26目标是改进使用DL的稀疏线性逆问题的解决方案。</p>
-<p>在第二种分类中，论文包括27，处理低分辨率量化的MIMO系统的盲检测，以及28，在这种情况下，对不存在数学信道模型的分子通信进行检测。学习解决无线资源分配的复杂优化任务，如电力控制，在29进行了研究。我们中的一些人还演示了在学习到的端到端通信系统的初始结果30也考虑了使用当前最先进的DL工具来进行调制识别31，信号压缩32，信道解码33，34。</p>
-<h2 id="II-DEEP-LEARNING-BASICS"><a href="#II-DEEP-LEARNING-BASICS" class="headerlink" title="II. DEEP LEARNING BASICS"></a>II. DEEP LEARNING BASICS</h2><h3 id="A-Convolutional-layers"><a href="#A-Convolutional-layers" class="headerlink" title="A. Convolutional layers"></a>A. Convolutional layers</h3><h3 id="B-Machine-learning-libraries"><a href="#B-Machine-learning-libraries" class="headerlink" title="B. Machine learning libraries"></a>B. Machine learning libraries</h3><h2 id="III-EXAMPLES-OF-MACHINE-LEARNING-APPLICATIONS-FOR-THE-PHYSICAL-LAYER"><a href="#III-EXAMPLES-OF-MACHINE-LEARNING-APPLICATIONS-FOR-THE-PHYSICAL-LAYER" class="headerlink" title="III. EXAMPLES OF MACHINE LEARNING APPLICATIONS FOR THE PHYSICAL LAYER"></a>III. EXAMPLES OF MACHINE LEARNING APPLICATIONS FOR THE PHYSICAL LAYER</h2><p>在本节中，我们将展示如何将终端通信系统作为自动编码器，并通过SGD对其进行培训。这个想法被扩展到多个发射器和接收器，我们研究的是一个双用户干涉通道。在此之后，我们将引入RTNs的概念来提高衰落信道的性能，并将其应用于原始的射频时间序列数据，以实现调制分类的任务。</p>
-<h3 id="A-Autoencoders-for-end-to-end-communications-systems"><a href="#A-Autoencoders-for-end-to-end-communications-systems" class="headerlink" title="A. Autoencoders for end-to-end communications systems"></a>A. Autoencoders for end-to-end communications systems</h3><p>在最简单的形式中，通信系统由一个发射机、一个通道和一个接收器组成，如图1所示。发送者想要将M个可能的消息中的一个发送给利用了n个离散的通道的接接器。为了如此，应用了转换形式f利用信息s来生成转换信号x=f(s)。一般来说,发射机的硬件条件会对x施加一定的约束，例如，能量约束，幅度约束，平均功率约束。这个通信系统的通信率是R=k/n(位/使用的信道数)。在续集中，符号（n，k）意味着通信系统发送一个M=2k次方数的消息（即：k位）通过n个使用的信道。信道是由条件概率密度函数p（y|x）描述的，其中y 表示接收信号。接收到y，接收方应用转换方式g来生成传输消息s的估计s^。</p>
-<p>从DL的观点来看，这个简单的通信系统可以被看作是一种特殊的自动编码器[35，Ch.14]。通常，自动编码器的目标是在某个中间层找到一个低维度表示的输入，它允许在输出端进行最小误差的重构。通过这种方式，自动编码器学习非线性压缩和重构输入。在我们的例子中,自动编码器的目的是不同的。它试图学习消息s的模型表示x，关于信道映射x到y的损耗(即噪声、衰减、失真等)，以便能够以很小的错误概率来恢复传输的消息。换句话说，当大多数自动编码器为了压缩数据从输入数据中删除冗余的时候，这个自动编码器（“通道自动编码器”）通常会增加冗余，学习一种中间表现形式，以表示对信道的干扰。</p>
-<p>图2显示了这样一个自动编码器的例子。在这里，发送器由一个前馈NN组成，它有多个密集层，然后是一个标准化层，确保在x上满足物理约束。注意发射器的输入s被编码为one-hot向量，一个M维的向量，第s个元素等于1而其他的元素等于0.信道由一个带有固定方差的附加噪声层表示$$B=(2RE/N)^ -1$$。Eb=N0表示每比特（Eb）的能量，即噪声功率谱密度（N0）比。接收器也用前馈NN实现。它的最后一层使用了一个softmax激活函数，输出p 是一个具有所有可能的分类信息的概率向量。解码后的信息估计s^对应的是p元素中概率最高的索引，。自动编码器可以在所有可能的信息s 属于M的集合上使用SGD进行端到端训练，使用在1和p之间的适合分类的的绝对交叉熵损失函数。</p>
-<p>图3比较了一个由训练的自动编码器（7,4）所实现的采用二进制相移键控（BPSK）调制和用二进制的硬编码解码的汉明（7,4）编码，或最大似然解码（MLD）来对抗误块率BLER）的通信系统的误块率（BLER）。两个系统都以R=4/7的速度运行。为了比较，我们还提供了未使用BPSK（44）编码的误块率（BLER）。这个结果表明，自动编码器在没有任何先验知识的情况下，已经学习了与使用MLD（7,4）的汉明码相同的编码和解码函数。自动编码器的布局在表IV中提供。尽管单个层可以表示从信息索引到对应传输向量的相同映射，但我们的实验表明SGD通过两个传输层而不是一个传输层来能够收敛到更好的全局最优点。这种增长的搜索空间维度参数通过使这些结果在优化过程中更有可能成为鞍点，可能实际上更有助于减少收敛到次优点的可能性。训练是在使用学习率0:001的Adam46方法在固定数值的Eb=N0=7 dB（cf. Section IV-B）的环境中完成的。我们注意到，在训练中增加批量的大小有助于提高精确度。对于所有其他实现细节，我们引用源代码44。</p>
-<p>图3b显示了类似的比较，但是对于一个（8,8）和（2,2）的通信系统来说。R = 1。令人惊讶的是，虽然自动编码器实现了在（2,2）下与未编码的BPSK相同的误块率BLER，但它在（8,8）的全部Eb/N0范围内的性能优于后者。这意味着它已经学习了一些联合编码和调制方案，这样就可302以实现编码增益。为了进行一个真正公平的比较，这个结果应该与使用通道代码的高阶调制方案进行比较（或者在八个维度上的最优包装）。用不同的基准对各种通道类型和参数的详细性能比较（n，k），超出了本文的范围，将留给将来的研究。</p>
-<h3 id="B-Autoencoders-for-multiple-transmitters-and-receivers"><a href="#B-Autoencoders-for-multiple-transmitters-and-receivers" class="headerlink" title="B. Autoencoders for multiple transmitters and receivers"></a>B. Autoencoders for multiple transmitters and receivers</h3><h3 id="C-Radio-transformer-networks-for-augmented-signal-processing-algorithms"><a href="#C-Radio-transformer-networks-for-augmented-signal-processing-algorithms" class="headerlink" title="C. Radio transformer networks for augmented signal processing algorithms"></a>C. Radio transformer networks for augmented signal processing algorithms</h3><h2 id="CONCLUSION"><a href="#CONCLUSION" class="headerlink" title="CONCLUSION"></a>CONCLUSION</h2><p>我们已经讨论了几个关于应用DL到物理层的有前景的新应用。最重要的是，我们已经介绍了一种将通信视为端到端的重构优化任务的新方法：使用自动编码器学习发射机和接收机的实现以及没有任何先验知识的信号编码。这种方法相较于传统的基准线在各种情况下都显示出极其具有竞争性的BLER 性能，虽然长块长度的可伸缩性仍然是一个挑战。除了潜在的在可靠性或延迟方面的性能改进，我们的方法可以提供有趣的见解关于在最优方案未知的场景（例如干扰信道）的最优的通信方案（例如星座映射）。我们相信这是一个把DL和ML应用于通信的广泛研究的开端，并对随着该领域的成熟未来无线通信系统得到增添的可能性感到兴奋。现在，有很多开放的问题需要解决以及实际的收获需要拥有。我们已经确定了未来研究的重点领域，并强调了可以用来比较不同的ML模型和算法的性能的基准问题和数据集的需求。</p>
+        <p>#3.1 数据结构和序列</p>
+<p>##元组<br>元组是一个<strong>固定长度，不可改变的Python序列对象。圆括号</strong>。<br>用tuple可以将任意序列或迭代器转换成元组：<br>可以用方括号访问元组中的元素。序列是从0开始的：<br>元组中存储的对象可能是可变对象。一旦创建了元组，元组中的对象就不能修改了：<br>tuple方法<br>因为元组的大小和内容不能修改，count方法（也适用于列表）可以统计某个值得出现频率：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">34</span>]: a = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>)</span><br><span class="line">In [<span class="number">35</span>]: a.count(<span class="number">2</span>)</span><br><span class="line">Out[<span class="number">35</span>]: <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>##列表<br>与元组对比，<strong>列表的长度可变、内容可以被修改</strong>。你可以用<strong>方括号</strong>定义，或用list函数<br>list函数常用来在数据处理中实体化迭代器或生成器：<br>用append在列表末尾添加元素：b_list.append(‘dwarf’)<br>insert可以在特定的位置插入元素：b_list.insert(1, ‘red’)<br>插入的序号必须在0和列表长度之间。<br>insert的逆运算是pop，它移除并返回指定位置的元素：b_list.pop(2)<br>用remove去除某个值，remove会先寻找第一个值并除去：<br>用in可以检查列表是否包含某个值：’dwarf’ in b_list<br>否定in可以再加一个not：’dwarf’ not in b_list<br>在列表中检查是否存在某个值远比字典和集合速度慢</p>
+<p>##串联和组合列表<br>与元组类似，可以用加号将两个列表串联起来：[4, None, ‘foo’] + [7, 8, (2, 3)]<br>用extend方法可以追加多个元素： x.extend([7, 8, (2, 3)])<br>通过加法将列表串联的计算量较大，因为要新建一个列表，并且要复制对象。用extend追加元素比串联方法快。</p>
+<p>##排序<br>用sort函数将一个列表原地排序（不创建新的对象）： a.sort()对数字<br>sort的二级排序key很好用，例如，我们可以按长度对字符串进行排序：b.sort(key=len)</p>
+<p>##二分搜索和维护已排序的列表<br>bisect模块支持二分查找，和向已排序的列表插入值。<br>bisect.bisect可以找到插入值后仍保证排序的位置，bisect.insort是向这个位置插入值： bisect.bisect(c, 2)，bisect.insort(c, 6)<br>注意：bisect模块不会检查列表是否已排好序，进行检查的话会耗费大量计算。因此，对未排序的列表使用bisect不会产生错误，但结果不一定正确。</p>
+<p>##切片<br>用切边可以选取大多数序列类型的一部分，切片的基本形式是在方括号中使用start:stop:step<br><img src="http://upload-images.jianshu.io/upload_images/10673632-83d9cb771e60dc8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"><br>在第二个冒号后面使用的step，指隔step取一个元素：seq[::2]<br>step=-1可以将列表或元组颠倒过来：seq[::-1]</p>
+<p>##序列函数<br>enumerate函数可以返回(i, value)元组序列来跟踪当前项的序号：for i, value in enumerate(collection):<br>sorted函数可以从任意序列的元素返回一个新的排好序的列表：sorted([7, 1, 2, 6, 0, 3, 2])。sorted函数可以接受和sort相同的参数。<br>zip可以将多个列表、元组或其它序列成对组合成一个元组列表：zipped = zip(seq1, seq2)<br>zip可以处理任意多的序列，元素的个数取决于最短的序列：<br>zip的常见用法之一是同时迭代多个序列，可能结合enumerate使用：for i, (a, b) in enumerate(zip(seq1, seq2)):<br>给出一个“被压缩的”序列，zip可以被用来解压序列。也可以当作把行的列表转换为列的列表：first_names, last_names = zip(*pitchers)<br>reversed函数可以从后向前迭代一个序列：list(reversed(range(10))) </p>
+<p>##字典<br>更为常见的名字是哈希映射或关联数组。。它是<strong>键值对的大小可变集合，键和值都是Python对象</strong>。创建方法：<strong>尖括号</strong>，用冒号分隔键和值： empty_dict = {}，d1 = {‘a’ : ‘some value’, ‘b’ : [1, 2, 3, 4]}<br>像访问列表或元组中的元素一样，访问、插入或设定字典中的元素：d1[7] = ‘an integer’，d1[‘b’]<br>用检查列表和元组是否包含某个值得方法，检查字典中是否包含某个键：’b’ in d1<br>用del关键字或pop方法（返回值得同时删除键）删除值：<br>keys和values是字典的键和值的迭代器方法。虽然键值对没有顺序，这两个方法可以用相同的顺序输出键和值：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">117</span>]: list(d1.keys())</span><br><span class="line">Out[<span class="number">117</span>]: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">118</span>]: list(d1.values())</span><br><span class="line">Out[<span class="number">118</span>]: [<span class="string">'some value'</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], <span class="string">'an integer'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>用update方法可以将一个字典与另一个融合：d1.update({‘b’ : ‘foo’, ‘c’ : 12})<br>update方法是原地改变字典，因此任何传递给update的键的旧的值都会被舍弃。</p>
+<p>###默认值<br>dict的方法get和pop可以取默认值进行返回：value = some_dict.get(key, default_value)<br>get默认会返回None，如果不存在键，pop会抛出一个例外。<br>setdefault方法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    letter = word[<span class="number">0</span>]</span><br><span class="line">    by_letter.setdefault(letter, []).append(word)</span><br></pre></td></tr></table></figure></p>
+<p>###有效的键类型<br>字典的值可以是任意Python对象，而键通常是不可变的标量类型（整数、浮点型、字符串）或元组（元组中的对象必须是不可变的）。这被称为“可哈希性”。可以用hash函数检测一个对象是否是可哈希的（可被用作字典的键）：hash(‘string’)<br>要用列表当做键，一种方法是将列表转化为元组，只要内部元素可以被哈希，它也就可以被哈希： d[tuple([1, 2, 3])] = 5</p>
+<p>##集合<br>集合是无序的不可重复的元素的集合。你可以把它当做字典，但是只有键没有值。可以用两种方式创建集合：通过set函数或使用尖括号set语句：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">133</span>]: set([<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>])</span><br><span class="line">Out[<span class="number">133</span>]: &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">134</span>]: &#123;<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>&#125;</span><br><span class="line">Out[<span class="number">134</span>]: &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用union方法或者|运算符可以取两个集合中不重复的元素： a.union(b) ，a | b<br><img src="http://upload-images.jianshu.io/upload_images/10673632-46d9c3560dcba796.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"><br>与字典类似，集合元素通常都是不可变的。要获得类似列表的元素，必须转换成元组： my_set = {tuple(my_data)}<br>你还可以检测一个集合是否是另一个集合的子集或父集：{1, 2, 3}.issubset(a_set)<br>集合的内容相同时，集合才对等，因为是无序的所以顺序可以不同：</p>
+<p>##列表、集合和字典推导式<br>列表推导式允许用户方便的从一个集合过滤元素，形成列表，在传递参数的过程中还可以修改元素。形式如下：<br>[expr for val in collection if condition]<br>等同于下面的for循环;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> collection:</span><br><span class="line">    <span class="keyword">if</span> condition:</span><br><span class="line">        result.append(expr)</span><br></pre></td></tr></table></figure></p>
+<p>给定一个字符串列表，我们可以过滤出长度在2及以下的字符串，并将其转换成大写：<br>In [154]: strings = [‘a’, ‘as’, ‘bat’, ‘car’, ‘dove’, ‘python’] In [155]: [x.upper() for x in strings if len(x) &gt; 2] Out[155]: [‘BAT’, ‘CAR’, ‘DOVE’, ‘PYTHON’]<br>字典的推导式如下所示：dict_comp = {key-expr : value-expr for value in collection if condition}<br>集合的推导式用的是尖括号：set_comp = {expr for value in collection if condition}<br>假如我们只想要字符串的长度，用集合推导式的方法非常方便：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">156</span>]: unique_lengths = &#123;len(x) <span class="keyword">for</span> x <span class="keyword">in</span> strings&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">157</span>]: unique_lengths</span><br><span class="line">Out[<span class="number">157</span>]: &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用map函数可以进一步简化：set(map(len, strings))</p>
+<p>我们可以创建一个字符串的查找映射表以确定它在列表中的位置：<br>loc_mapping = {val : index for index, val in enumerate(strings)}</p>
+<p>#3.2 函数<br>函数使用def关键字声明，用return关键字返回值：<br>关键字参数通常用于指定默认值或可选参数。关键字参数必须位于位置参数（如果有的话）之后。你可以任何顺序指定关键字参数。</p>
+<p>##命名空间、作用域，和局部函数<br>任何在函数中赋值的变量默认都是被分配到局部命名空间（local namespace）中的。局部命名空间是在函数被调用时创建的，函数参数会立即填入该命名空间。在函数执行完毕之后，局部命名空间就会被销毁<br>可以在函数中对全局变量进行赋值操作，但是那些变量必须用global关键字声明成全局的才行：<br>注意：我常常建议人们不要频繁使用global关键字。因为全局变量一般是用于存放系统的某些状态的。如果你发现自己用了很多，那可能就说明得要来点儿面向对象编程了（即使用类）。</p>
+<p>##返回多个值<br>return a, b, c<br>return {‘a’ : a, ‘b’ : b, ‘c’ : c}</p>
+<p>##生成器<br>能以一种一致的方式对序列进行迭代（比如列表中的对象或文件中的行）是Python的一个重要特点。这是通过一种叫做迭代器协议（iterator protocol，它是一种使对象可迭代的通用方式）的方式实现的，一个原生的使对象可迭代的方法。比如说，对字典进行迭代可以得到其所有的键：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">180</span>]: some_dict = &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">181</span>]: <span class="keyword">for</span> key <span class="keyword">in</span> some_dict:</span><br><span class="line">   .....:     print(key)</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br></pre></td></tr></table></figure></p>
+<p>当你编写for key in some_dict时，Python解释器首先会尝试从some_dict创建一个迭代器：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">182</span>]: dict_iterator = iter(some_dict)</span><br><span class="line"></span><br><span class="line">In [<span class="number">183</span>]: dict_iterator</span><br><span class="line">Out[<span class="number">183</span>]: &lt;dict_keyiterator at <span class="number">0x7fbbd5a9f908</span>&gt;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -294,7 +390,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/AI通信//" class="article-tag-list-link color5">AI通信</a>
+        			<a href="/categories/利用Python进行数据分析V2//" class="article-tag-list-link color2">利用Python进行数据分析V2</a>
         		</li>
       		
 		</ul>
@@ -303,7 +399,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/08/An Introduction to Deep Learning for the Physical Layer/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/03/08/pyda-c3/">展开全文 >></a>
         </p>
       
 

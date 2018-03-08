@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>AI结合通信 | yxs33</title>
+  <title>深度学习应用到物理层的介绍 | yxs33</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
+  <meta name="description" content="An Introduction to Deep Learning for the Physical Layer Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展到多">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AI结合通信">
+<meta property="og:title" content="深度学习应用到物理层的介绍">
 <meta property="og:url" content="http://yoursite.com/2018/03/08/An Introduction to Deep Learning for the Physical Layer/index.html">
 <meta property="og:site_name" content="yxs33">
-<meta property="og:description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
+<meta property="og:description" content="An Introduction to Deep Learning for the Physical Layer Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展到多">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-08T06:45:24.084Z">
+<meta property="og:updated_time" content="2018-03-08T07:04:46.999Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AI结合通信">
-<meta name="twitter:description" content="#An Introduction to Deep Learning for the Physical Layer  Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展">
+<meta name="twitter:title" content="深度学习应用到物理层的介绍">
+<meta name="twitter:description" content="An Introduction to Deep Learning for the Physical Layer Abstract我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展到多">
   
     <link rel="alternative" href="/atom.xml" title="yxs33" type="application/atom+xml">
   
@@ -165,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      AI结合通信
+      深度学习应用到物理层的介绍
     </h1>
   
 
@@ -178,8 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#An Introduction to Deep Learning for the Physical Layer</p>
-<hr>
+        <h1 id="An-Introduction-to-Deep-Learning-for-the-Physical-Layer"><a href="#An-Introduction-to-Deep-Learning-for-the-Physical-Layer" class="headerlink" title="An Introduction to Deep Learning for the Physical Layer"></a>An Introduction to Deep Learning for the Physical Layer</h1><hr>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们提出并讨论了几个关于深度学习（DL）在物理层的新的应用。通过将通信系统解释为一个自动编码器（autoencoder），我们开发一个了一种全新的将通信系统设计转换为端到端重建任务的方式，这种方式旨在在单个进程中共同优化发射机和接收机组件。我们展示了如何将这个想法扩展到多重网络发射器和接收器并提出了无线电变换网络（RTNs）的概念作为一种结合机器学习（ML）模型中的专业领域知识的方式。最后,我们展示了卷积神经网络关于未处理的IQ采样值的调制分类的应用 ，相比于传统的依赖特征的方法达到了具有竞争性的准确率。这篇论文主要是公然挑战的讨论和未来的研究领域。</p>
 <h2 id="I-INTRODUCTION"><a href="#I-INTRODUCTION" class="headerlink" title="I. INTRODUCTION"></a>I. INTRODUCTION</h2><p>通信是一个需要大量专业知识的领域，例如，如何对不同类型的通道进行建模，对各种硬件缺陷进行补偿，和设计最佳的信号和检测方案以确保数据传输的可靠性。因此，它是一个复杂而成熟的工程领域，有许多不同的研究领域 都见过关于性能提升而收益递减，特别是在物理层上。任何基于机器学习（ML）或深度学习（DL）的方法必须通过高水平的性能，才能提供切实的新利益。</p>
 <p>在计算机视觉和自然语言等领域处理，DL很亮眼是因为很难用严格的数学模型描述真实世界的图像或语言。例如，编写一个强悍的算法来检测手写数字或图像目标几乎是不可能的任务，但在现在实现DL算法以超过人类的水平的准确性去学习来完成这项任务几乎是微不足道的。在通信方面，换句话说，我们可以设计出直接的传输信号用于各种信道的符号检测算法和系统模型（例如，探测加上了白高斯噪声的星座符号（AWGN））。因此，只要这样的模型能充分捕获真实效果，我们没有期望</p>
@@ -312,9 +311,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/03/08/Deep Learning for Wireless Physical Layer -Opportunities and Challenges/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          深度学习应用到无线通信物理层的机会和挑战
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/03/08/Deep Learning-Based MIMO Communications/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AI结合通信</div>
+      <div class="article-nav-title">基于深度学习的MIMO通信</div>
       <i class="icon-circle-right"></i>
     </a>
   
